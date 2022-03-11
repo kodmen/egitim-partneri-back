@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-ders-analiz-heading"
+        data-cy="DersAnalizCreateUpdateHeading"
+        jhiTranslate="gamificationApp.dersAnaliz.home.createOrEditLabel"
+      >
+        Create or edit a Ders Analiz
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.dersAnaliz.toplamYanlis" for="field_toplamYanlis"
+            >Toplam Yanlis</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="toplamYanlis"
+            id="field_toplamYanlis"
+            data-cy="toplamYanlis"
+            formControlName="toplamYanlis"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.dersAnaliz.toplamDogru" for="field_toplamDogru"
+            >Toplam Dogru</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="toplamDogru"
+            id="field_toplamDogru"
+            data-cy="toplamDogru"
+            formControlName="toplamDogru"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.dersAnaliz.cozulenSoru" for="field_cozulenSoru"
+            >Cozulen Soru</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="cozulenSoru"
+            id="field_cozulenSoru"
+            data-cy="cozulenSoru"
+            formControlName="cozulenSoru"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.dersAnaliz.tamamlandi" for="field_tamamlandi">Tamamlandi</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="tamamlandi"
+            id="field_tamamlandi"
+            data-cy="tamamlandi"
+            formControlName="tamamlandi"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.dersAnaliz.aitOldBolum" for="field_aitOldBolum"
+            >Ait Old Bolum</label
+          >
+          <select class="form-control" id="field_aitOldBolum" data-cy="aitOldBolum" name="aitOldBolum" formControlName="aitOldBolum">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="bolumOption.id === editForm.get('aitOldBolum')!.value?.id ? editForm.get('aitOldBolum')!.value : bolumOption"
+              *ngFor="let bolumOption of bolumsSharedCollection; trackBy: trackBolumById"
+            >
+              {{ bolumOption.bolumBaslik }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

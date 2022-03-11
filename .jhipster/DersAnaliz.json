@@ -1,0 +1,47 @@
+{
+  "name": "DersAnaliz",
+  "fields": [
+    {
+      "fieldName": "toplamYanlis",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "toplamDogru",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "cozulenSoru",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tamamlandi",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "bolum",
+      "otherEntityRelationshipName": "analizBolum",
+      "relationshipName": "aitOldBolum",
+      "otherEntityField": "bolumBaslik"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "kayit",
+      "otherEntityRelationshipName": "dersAnalizleri",
+      "relationshipName": "kayitlar3",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "ders_analiz",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311082341"
+}

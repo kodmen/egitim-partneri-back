@@ -1,0 +1,35 @@
+{
+  "name": "Rozet",
+  "fields": [
+    {
+      "fieldName": "rozetIsmi",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "500"
+    },
+    {
+      "fieldName": "rozetResim",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "ogrenci",
+      "otherEntityRelationshipName": "rozetler",
+      "relationshipName": "ogrenciler",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "rozet",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311082141"
+}

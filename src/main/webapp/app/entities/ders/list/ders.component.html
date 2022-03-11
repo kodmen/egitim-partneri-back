@@ -1,0 +1,99 @@
+<div>
+  <h2 id="page-heading" data-cy="DersHeading">
+    <span jhiTranslate="gamificationApp.ders.home.title">Ders</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gamificationApp.ders.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ders"
+        [routerLink]="['/ders/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gamificationApp.ders.home.createLabel"> Create a new Ders </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="ders?.length === 0">
+    <span jhiTranslate="gamificationApp.ders.home.notFound">No ders found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="ders && ders.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ders.isim">Isim</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ders.toplamPuan">Toplam Puan</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ders.olusturulmaTarih">Olusturulma Tarih</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ders.aciklama">Aciklama</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ders.resim">Resim</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ders.dersMufredat">Ders Mufredat</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ders.dersForm">Ders Form</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ders.dersOgretmeni">Ders Ogretmeni</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ders of ders; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/ders', ders.id, 'view']">{{ ders.id }}</a>
+          </td>
+          <td>{{ ders.isim }}</td>
+          <td>{{ ders.toplamPuan }}</td>
+          <td>{{ ders.olusturulmaTarih | formatMediumDate }}</td>
+          <td>{{ ders.aciklama }}</td>
+          <td>
+            <a *ngIf="ders.resim" (click)="openFile(ders.resim, ders.resimContentType)">
+              <img [src]="'data:' + ders.resimContentType + ';base64,' + ders.resim" style="max-height: 30px" alt="ders image" />
+            </a>
+            <span *ngIf="ders.resim">{{ ders.resimContentType }}, {{ byteSize(ders.resim) }}</span>
+          </td>
+          <td>
+            <div *ngIf="ders.dersMufredat">
+              <a [routerLink]="['/mufredat', ders.dersMufredat?.id, 'view']">{{ ders.dersMufredat?.mufredatBaslik }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ders.dersForm">
+              <a [routerLink]="['/form', ders.dersForm?.id, 'view']">{{ ders.dersForm?.baslik }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ders.dersOgretmeni">
+              <a [routerLink]="['/ogretmen', ders.dersOgretmeni?.id, 'view']">{{ ders.dersOgretmeni?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/ders', ders.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/ders', ders.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(ders)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

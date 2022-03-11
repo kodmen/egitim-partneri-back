@@ -1,0 +1,63 @@
+{
+  "name": "Bolum",
+  "fields": [
+    {
+      "fieldName": "bolumBaslik",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "500"
+    },
+    {
+      "fieldName": "dokuman",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "puan",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "videoLink",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "1000"
+    },
+    {
+      "fieldName": "sure",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "dersAnaliz",
+      "otherEntityRelationshipName": "aitOldBolum",
+      "relationshipName": "analizBolum"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "soruTest",
+      "otherEntityRelationshipName": "testBolum",
+      "relationshipName": "testler",
+      "otherEntityField": "tesBaslik"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "mufredat",
+      "otherEntityRelationshipName": "bolumler",
+      "relationshipName": "mufredatlar",
+      "otherEntityField": "mufredatBaslik",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "bolum",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311082641"
+}

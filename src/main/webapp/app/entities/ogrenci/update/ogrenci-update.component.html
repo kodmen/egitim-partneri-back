@@ -1,0 +1,81 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-ogrenci-heading" data-cy="OgrenciCreateUpdateHeading" jhiTranslate="gamificationApp.ogrenci.home.createOrEditLabel">
+        Create or edit a Ogrenci
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ogrenci.level" for="field_level">Level</label>
+          <input type="number" class="form-control" name="level" id="field_level" data-cy="level" formControlName="level" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ogrenci.aciklama" for="field_aciklama">Aciklama</label>
+          <textarea class="form-control" name="aciklama" id="field_aciklama" data-cy="aciklama" formControlName="aciklama"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ogrenci.toplamPuan" for="field_toplamPuan">Toplam Puan</label>
+          <input
+            type="number"
+            class="form-control"
+            name="toplamPuan"
+            id="field_toplamPuan"
+            data-cy="toplamPuan"
+            formControlName="toplamPuan"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ogrenci.studentUser" for="field_studentUser">Student User</label>
+          <select class="form-control" id="field_studentUser" data-cy="studentUser" name="studentUser" formControlName="studentUser">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="userOption.id === editForm.get('studentUser')!.value?.id ? editForm.get('studentUser')!.value : userOption"
+              *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
+            >
+              {{ userOption.login }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label jhiTranslate="gamificationApp.ogrenci.rozetler" for="field_rozetlers">Rozetler</label>
+          <select class="form-control" id="field_rozetlers" data-cy="rozetler" multiple name="rozetlers" formControlName="rozetlers">
+            <option
+              [ngValue]="getSelectedRozet(rozetOption, editForm.get('rozetlers')!.value)"
+              *ngFor="let rozetOption of rozetsSharedCollection; trackBy: trackRozetById"
+            >
+              {{ rozetOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

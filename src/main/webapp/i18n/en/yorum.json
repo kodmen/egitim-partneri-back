@@ -1,0 +1,27 @@
+{
+  "gamificationApp": {
+    "yorum": {
+      "home": {
+        "title": "Yorums",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Yorum",
+        "createOrEditLabel": "Create or edit a Yorum",
+        "notFound": "No Yorums found"
+      },
+      "created": "A new Yorum is created with identifier {{ param }}",
+      "updated": "A Yorum is updated with identifier {{ param }}",
+      "deleted": "A Yorum is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Yorum {{ id }}?"
+      },
+      "detail": {
+        "title": "Yorum"
+      },
+      "id": "ID",
+      "yazi": "Yazi",
+      "date": "Date",
+      "userYorum": "User Yorum",
+      "formYorum": "Form Yorum"
+    }
+  }
+}

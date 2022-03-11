@@ -1,0 +1,129 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-soru-test-heading" data-cy="SoruTestCreateUpdateHeading" jhiTranslate="gamificationApp.soruTest.home.createOrEditLabel">
+        Create or edit a Soru Test
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.soruTest.tesBaslik" for="field_tesBaslik">Tes Baslik</label>
+          <input type="text" class="form-control" name="tesBaslik" id="field_tesBaslik" data-cy="tesBaslik" formControlName="tesBaslik" />
+          <div *ngIf="editForm.get('tesBaslik')!.invalid && (editForm.get('tesBaslik')!.dirty || editForm.get('tesBaslik')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('tesBaslik')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 500 }"
+            >
+              This field cannot be longer than 500 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.soruTest.testPdf" for="field_testPdf">Test Pdf</label>
+          <input type="text" class="form-control" name="testPdf" id="field_testPdf" data-cy="testPdf" formControlName="testPdf" />
+          <div *ngIf="editForm.get('testPdf')!.invalid && (editForm.get('testPdf')!.dirty || editForm.get('testPdf')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('testPdf')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 500 }"
+            >
+              This field cannot be longer than 500 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.soruTest.testFoto" for="field_testFoto">Test Foto</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('testFotoContentType')!.value + ';base64,' + editForm.get('testFoto')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('testFoto')!.value"
+              alt="soruTest image"
+            />
+            <div *ngIf="editForm.get('testFoto')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left"
+                >{{ editForm.get('testFotoContentType')!.value }}, {{ byteSize(editForm.get('testFoto')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('testFoto', 'testFotoContentType', 'file_testFoto')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_testFoto"
+              data-cy="testFoto"
+              (change)="setFileData($event, 'testFoto', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="testFoto" id="field_testFoto" data-cy="testFoto" formControlName="testFoto" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="testFotoContentType"
+            id="field_testFotoContentType"
+            formControlName="testFotoContentType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label jhiTranslate="gamificationApp.soruTest.sorular" for="field_sorulars">Sorular</label>
+          <select class="form-control" id="field_sorulars" data-cy="sorular" multiple name="sorulars" formControlName="sorulars">
+            <option
+              [ngValue]="getSelectedSoru(soruOption, editForm.get('sorulars')!.value)"
+              *ngFor="let soruOption of sorusSharedCollection; trackBy: trackSoruById"
+            >
+              {{ soruOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.soruTest.testBolum" for="field_testBolum">Test Bolum</label>
+          <select class="form-control" id="field_testBolum" data-cy="testBolum" name="testBolum" formControlName="testBolum">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="bolumOption.id === editForm.get('testBolum')!.value?.id ? editForm.get('testBolum')!.value : bolumOption"
+              *ngFor="let bolumOption of bolumsSharedCollection; trackBy: trackBolumById"
+            >
+              {{ bolumOption.bolumBaslik }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

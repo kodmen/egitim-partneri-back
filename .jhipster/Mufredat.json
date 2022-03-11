@@ -1,0 +1,46 @@
+{
+  "name": "Mufredat",
+  "fields": [
+    {
+      "fieldName": "mufredatBaslik",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "500"
+    },
+    {
+      "fieldName": "toplamSure",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bolumSayi",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "bolum",
+      "otherEntityRelationshipName": "mufredatlar",
+      "relationshipName": "bolumler",
+      "otherEntityField": "bolumBaslik",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "ders",
+      "otherEntityRelationshipName": "dersMufredat",
+      "relationshipName": "mufredatDers",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "mufredat",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311082541"
+}

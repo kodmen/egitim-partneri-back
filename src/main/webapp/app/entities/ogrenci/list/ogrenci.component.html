@@ -1,0 +1,93 @@
+<div>
+  <h2 id="page-heading" data-cy="OgrenciHeading">
+    <span jhiTranslate="gamificationApp.ogrenci.home.title">Ogrencis</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gamificationApp.ogrenci.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ogrenci"
+        [routerLink]="['/ogrenci/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gamificationApp.ogrenci.home.createLabel"> Create a new Ogrenci </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="ogrencis?.length === 0">
+    <span jhiTranslate="gamificationApp.ogrenci.home.notFound">No ogrencis found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="ogrencis && ogrencis.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ogrenci.level">Level</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ogrenci.aciklama">Aciklama</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ogrenci.toplamPuan">Toplam Puan</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ogrenci.studentUser">Student User</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.ogrenci.rozetler">Rozetler</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ogrenci of ogrencis; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/ogrenci', ogrenci.id, 'view']">{{ ogrenci.id }}</a>
+          </td>
+          <td>{{ ogrenci.level }}</td>
+          <td>{{ ogrenci.aciklama }}</td>
+          <td>{{ ogrenci.toplamPuan }}</td>
+          <td>
+            {{ ogrenci.studentUser?.login }}
+          </td>
+          <td>
+            <span *ngFor="let rozetler of ogrenci.rozetlers; let last = last">
+              <a class="form-control-static" [routerLink]="['/rozet', rozetler.id, 'view']">{{ rozetler.id }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/ogrenci', ogrenci.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/ogrenci', ogrenci.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(ogrenci)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

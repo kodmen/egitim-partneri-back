@@ -1,0 +1,69 @@
+{
+  "name": "Ders",
+  "fields": [
+    {
+      "fieldName": "isim",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "500"
+    },
+    {
+      "fieldName": "toplamPuan",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "olusturulmaTarih",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "aciklama",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "resim",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "mufredat",
+      "otherEntityRelationshipName": "mufredatDers",
+      "relationshipName": "dersMufredat",
+      "otherEntityField": "mufredatBaslik",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "form",
+      "otherEntityRelationshipName": "formDers",
+      "relationshipName": "dersForm",
+      "otherEntityField": "baslik",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "kayit",
+      "otherEntityRelationshipName": "aitOldDers",
+      "relationshipName": "kayitlar1"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "ogretmen",
+      "otherEntityRelationshipName": "dersler",
+      "relationshipName": "dersOgretmeni"
+    }
+  ],
+  "entityTableName": "ders",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311082441"
+}

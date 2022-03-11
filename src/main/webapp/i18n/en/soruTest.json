@@ -1,0 +1,28 @@
+{
+  "gamificationApp": {
+    "soruTest": {
+      "home": {
+        "title": "Soru Tests",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Soru Test",
+        "createOrEditLabel": "Create or edit a Soru Test",
+        "notFound": "No Soru Tests found"
+      },
+      "created": "A new Soru Test is created with identifier {{ param }}",
+      "updated": "A Soru Test is updated with identifier {{ param }}",
+      "deleted": "A Soru Test is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Soru Test {{ id }}?"
+      },
+      "detail": {
+        "title": "Soru Test"
+      },
+      "id": "ID",
+      "tesBaslik": "Tes Baslik",
+      "testPdf": "Test Pdf",
+      "testFoto": "Test Foto",
+      "sorular": "Sorular",
+      "testBolum": "Test Bolum"
+    }
+  }
+}

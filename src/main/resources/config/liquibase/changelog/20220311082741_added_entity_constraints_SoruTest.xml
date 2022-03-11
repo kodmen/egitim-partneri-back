@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity SoruTest.
+    -->
+    <changeSet id="20220311082741-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="soru_test_id"
+                                 baseTableName="rel_soru_test__sorular"
+                                 constraintName="fk_rel_soru_test__sorular__soru_test_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="soru_test"/>
+
+        <addForeignKeyConstraint baseColumnNames="sorular_id"
+                                 baseTableName="rel_soru_test__sorular"
+                                 constraintName="fk_rel_soru_test__sorular__sorular_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="soru"/>
+
+        <addForeignKeyConstraint baseColumnNames="test_bolum_id"
+                                 baseTableName="soru_test"
+                                 constraintName="fk_soru_test__test_bolum_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bolum"/>
+    </changeSet>
+</databaseChangeLog>

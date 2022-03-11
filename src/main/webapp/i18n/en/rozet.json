@@ -1,0 +1,26 @@
+{
+  "gamificationApp": {
+    "rozet": {
+      "home": {
+        "title": "Rozets",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Rozet",
+        "createOrEditLabel": "Create or edit a Rozet",
+        "notFound": "No Rozets found"
+      },
+      "created": "A new Rozet is created with identifier {{ param }}",
+      "updated": "A Rozet is updated with identifier {{ param }}",
+      "deleted": "A Rozet is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Rozet {{ id }}?"
+      },
+      "detail": {
+        "title": "Rozet"
+      },
+      "id": "ID",
+      "rozetIsmi": "Rozet Ismi",
+      "rozetResim": "Rozet Resim",
+      "ogrenciler": "Ogrenciler"
+    }
+  }
+}

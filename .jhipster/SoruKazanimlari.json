@@ -1,0 +1,28 @@
+{
+  "name": "SoruKazanimlari",
+  "fields": [
+    {
+      "fieldName": "kazanim",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "soru",
+      "otherEntityRelationshipName": "kazanimlar",
+      "relationshipName": "aitOldSorular",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "soru_kazanimlari",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311082941"
+}

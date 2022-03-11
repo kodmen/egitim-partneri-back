@@ -1,0 +1,34 @@
+{
+  "name": "Form",
+  "fields": [
+    {
+      "fieldName": "baslik",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "yorum",
+      "otherEntityRelationshipName": "formYorum",
+      "relationshipName": "yorumlar1"
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "ders",
+      "otherEntityRelationshipName": "dersForm",
+      "relationshipName": "formDers",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "form",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311083041"
+}

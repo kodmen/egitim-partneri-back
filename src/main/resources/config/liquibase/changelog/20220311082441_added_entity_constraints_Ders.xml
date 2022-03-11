@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Ders.
+    -->
+    <changeSet id="20220311082441-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="ders_mufredat_id"
+                                 baseTableName="ders"
+                                 constraintName="fk_ders__ders_mufredat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mufredat"/>
+
+        <addForeignKeyConstraint baseColumnNames="ders_form_id"
+                                 baseTableName="ders"
+                                 constraintName="fk_ders__ders_form_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="form"/>
+
+        <addForeignKeyConstraint baseColumnNames="ders_ogretmeni_id"
+                                 baseTableName="ders"
+                                 constraintName="fk_ders__ders_ogretmeni_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ogretmen"/>
+    </changeSet>
+</databaseChangeLog>

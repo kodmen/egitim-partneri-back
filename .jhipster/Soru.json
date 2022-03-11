@@ -1,0 +1,36 @@
+{
+  "name": "Soru",
+  "fields": [
+    {
+      "fieldName": "cevap",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "soruKazanimlari",
+      "otherEntityRelationshipName": "aitOldSorular",
+      "relationshipName": "kazanimlar",
+      "otherEntityField": "kazanim",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "soruTest",
+      "otherEntityRelationshipName": "sorular",
+      "relationshipName": "aitOldTestler",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "soru",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311082841"
+}

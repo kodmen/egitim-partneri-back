@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Soru.
+    -->
+    <changeSet id="20220311082841-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="soru_id"
+                                 baseTableName="rel_soru__kazanimlar"
+                                 constraintName="fk_rel_soru__kazanimlar__soru_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="soru"/>
+
+        <addForeignKeyConstraint baseColumnNames="kazanimlar_id"
+                                 baseTableName="rel_soru__kazanimlar"
+                                 constraintName="fk_rel_soru__kazanimlar__kazanimlar_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="soru_kazanimlari"/>
+    </changeSet>
+</databaseChangeLog>

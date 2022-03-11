@@ -1,0 +1,89 @@
+<div>
+  <h2 id="page-heading" data-cy="KayitHeading">
+    <span jhiTranslate="gamificationApp.kayit.home.title">Kayits</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gamificationApp.kayit.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-kayit"
+        [routerLink]="['/kayit/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gamificationApp.kayit.home.createLabel"> Create a new Kayit </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="kayits?.length === 0">
+    <span jhiTranslate="gamificationApp.kayit.home.notFound">No kayits found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="kayits && kayits.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.kayit.puan">Puan</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.kayit.kayitTarih">Kayit Tarih</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.kayit.dersAnalizleri">Ders Analizleri</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.kayit.aitOldDers">Ait Old Ders</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.kayit.kayitOgrenci">Kayit Ogrenci</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let kayit of kayits; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/kayit', kayit.id, 'view']">{{ kayit.id }}</a>
+          </td>
+          <td>{{ kayit.puan }}</td>
+          <td>{{ kayit.kayitTarih | formatMediumDate }}</td>
+          <td>
+            <span *ngFor="let dersAnalizleri of kayit.dersAnalizleris; let last = last">
+              <a class="form-control-static" [routerLink]="['/ders-analiz', dersAnalizleri.id, 'view']">{{ dersAnalizleri.id }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td>
+            <div *ngIf="kayit.aitOldDers">
+              <a [routerLink]="['/ders', kayit.aitOldDers?.id, 'view']">{{ kayit.aitOldDers?.isim }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="kayit.kayitOgrenci">
+              <a [routerLink]="['/ogrenci', kayit.kayitOgrenci?.id, 'view']">{{ kayit.kayitOgrenci?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/kayit', kayit.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/kayit', kayit.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(kayit)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

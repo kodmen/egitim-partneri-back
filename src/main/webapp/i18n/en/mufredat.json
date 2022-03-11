@@ -1,0 +1,28 @@
+{
+  "gamificationApp": {
+    "mufredat": {
+      "home": {
+        "title": "Mufredats",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Mufredat",
+        "createOrEditLabel": "Create or edit a Mufredat",
+        "notFound": "No Mufredats found"
+      },
+      "created": "A new Mufredat is created with identifier {{ param }}",
+      "updated": "A Mufredat is updated with identifier {{ param }}",
+      "deleted": "A Mufredat is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Mufredat {{ id }}?"
+      },
+      "detail": {
+        "title": "Mufredat"
+      },
+      "id": "ID",
+      "mufredatBaslik": "Mufredat Baslik",
+      "toplamSure": "Toplam Sure",
+      "bolumSayi": "Bolum Sayi",
+      "bolumler": "Bolumler",
+      "mufredatDers": "Mufredat Ders"
+    }
+  }
+}

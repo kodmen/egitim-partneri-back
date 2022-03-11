@@ -1,0 +1,25 @@
+{
+  "gamificationApp": {
+    "soruKazanimlari": {
+      "home": {
+        "title": "Soru Kazanimlaris",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Soru Kazanimlari",
+        "createOrEditLabel": "Create or edit a Soru Kazanimlari",
+        "notFound": "No Soru Kazanimlaris found"
+      },
+      "created": "A new Soru Kazanimlari is created with identifier {{ param }}",
+      "updated": "A Soru Kazanimlari is updated with identifier {{ param }}",
+      "deleted": "A Soru Kazanimlari is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Soru Kazanimlari {{ id }}?"
+      },
+      "detail": {
+        "title": "Soru Kazanimlari"
+      },
+      "id": "ID",
+      "kazanim": "Kazanim",
+      "aitOldSorular": "Ait Old Sorular"
+    }
+  }
+}

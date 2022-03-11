@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ders">
+      <h2 data-cy="dersDetailsHeading"><span jhiTranslate="gamificationApp.ders.detail.title">Ders</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ ders.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ders.isim">Isim</span></dt>
+        <dd>
+          <span>{{ ders.isim }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ders.toplamPuan">Toplam Puan</span></dt>
+        <dd>
+          <span>{{ ders.toplamPuan }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ders.olusturulmaTarih">Olusturulma Tarih</span></dt>
+        <dd>
+          <span>{{ ders.olusturulmaTarih | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ders.aciklama">Aciklama</span></dt>
+        <dd>
+          <span>{{ ders.aciklama }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ders.resim">Resim</span></dt>
+        <dd>
+          <div *ngIf="ders.resim">
+            <a (click)="openFile(ders.resim, ders.resimContentType)">
+              <img [src]="'data:' + ders.resimContentType + ';base64,' + ders.resim" style="max-width: 100%" alt="ders image" />
+            </a>
+            {{ ders.resimContentType }}, {{ byteSize(ders.resim) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ders.dersMufredat">Ders Mufredat</span></dt>
+        <dd>
+          <div *ngIf="ders.dersMufredat">
+            <a [routerLink]="['/mufredat', ders.dersMufredat?.id, 'view']">{{ ders.dersMufredat?.mufredatBaslik }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ders.dersForm">Ders Form</span></dt>
+        <dd>
+          <div *ngIf="ders.dersForm">
+            <a [routerLink]="['/form', ders.dersForm?.id, 'view']">{{ ders.dersForm?.baslik }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ders.dersOgretmeni">Ders Ogretmeni</span></dt>
+        <dd>
+          <div *ngIf="ders.dersOgretmeni">
+            <a [routerLink]="['/ogretmen', ders.dersOgretmeni?.id, 'view']">{{ ders.dersOgretmeni?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ders', ders.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

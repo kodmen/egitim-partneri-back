@@ -1,0 +1,20 @@
+{
+  "name": "SiteInfo",
+  "fields": [
+    {
+      "fieldName": "baslik",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "site_info",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311083541"
+}

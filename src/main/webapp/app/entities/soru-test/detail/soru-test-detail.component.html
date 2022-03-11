@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="soruTest">
+      <h2 data-cy="soruTestDetailsHeading"><span jhiTranslate="gamificationApp.soruTest.detail.title">Soru Test</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ soruTest.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.soruTest.tesBaslik">Tes Baslik</span></dt>
+        <dd>
+          <span>{{ soruTest.tesBaslik }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.soruTest.testPdf">Test Pdf</span></dt>
+        <dd>
+          <span>{{ soruTest.testPdf }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.soruTest.testFoto">Test Foto</span></dt>
+        <dd>
+          <div *ngIf="soruTest.testFoto">
+            <a (click)="openFile(soruTest.testFoto, soruTest.testFotoContentType)">
+              <img
+                [src]="'data:' + soruTest.testFotoContentType + ';base64,' + soruTest.testFoto"
+                style="max-width: 100%"
+                alt="soruTest image"
+              />
+            </a>
+            {{ soruTest.testFotoContentType }}, {{ byteSize(soruTest.testFoto) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.soruTest.sorular">Sorular</span></dt>
+        <dd>
+          <span *ngFor="let sorular of soruTest.sorulars; let last = last">
+            <a [routerLink]="['/soru', sorular?.id, 'view']">{{ sorular.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.soruTest.testBolum">Test Bolum</span></dt>
+        <dd>
+          <div *ngIf="soruTest.testBolum">
+            <a [routerLink]="['/bolum', soruTest.testBolum?.id, 'view']">{{ soruTest.testBolum?.bolumBaslik }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/soru-test', soruTest.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

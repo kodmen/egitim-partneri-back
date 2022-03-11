@@ -1,0 +1,40 @@
+{
+  "name": "Yorum",
+  "fields": [
+    {
+      "fieldName": "yazi",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "10000"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "yorumlar2",
+      "relationshipName": "userYorum",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "form",
+      "otherEntityRelationshipName": "yorumlar1",
+      "relationshipName": "formYorum"
+    }
+  ],
+  "entityTableName": "yorum",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311083141"
+}

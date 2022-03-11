@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dersAnaliz">
+      <h2 data-cy="dersAnalizDetailsHeading"><span jhiTranslate="gamificationApp.dersAnaliz.detail.title">Ders Analiz</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ dersAnaliz.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.dersAnaliz.toplamYanlis">Toplam Yanlis</span></dt>
+        <dd>
+          <span>{{ dersAnaliz.toplamYanlis }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.dersAnaliz.toplamDogru">Toplam Dogru</span></dt>
+        <dd>
+          <span>{{ dersAnaliz.toplamDogru }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.dersAnaliz.cozulenSoru">Cozulen Soru</span></dt>
+        <dd>
+          <span>{{ dersAnaliz.cozulenSoru }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.dersAnaliz.tamamlandi">Tamamlandi</span></dt>
+        <dd>
+          <span>{{ dersAnaliz.tamamlandi }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.dersAnaliz.aitOldBolum">Ait Old Bolum</span></dt>
+        <dd>
+          <div *ngIf="dersAnaliz.aitOldBolum">
+            <a [routerLink]="['/bolum', dersAnaliz.aitOldBolum?.id, 'view']">{{ dersAnaliz.aitOldBolum?.bolumBaslik }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ders-analiz', dersAnaliz.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

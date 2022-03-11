@@ -1,0 +1,26 @@
+{
+  "gamificationApp": {
+    "ogretmen": {
+      "home": {
+        "title": "Ogretmen",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Ogretmen",
+        "createOrEditLabel": "Create or edit a Ogretmen",
+        "notFound": "No Ogretmen found"
+      },
+      "created": "A new Ogretmen is created with identifier {{ param }}",
+      "updated": "A Ogretmen is updated with identifier {{ param }}",
+      "deleted": "A Ogretmen is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ogretmen {{ id }}?"
+      },
+      "detail": {
+        "title": "Ogretmen"
+      },
+      "id": "ID",
+      "aciklama": "Aciklama",
+      "ogretmenUser": "Ogretmen User",
+      "dersler": "Dersler"
+    }
+  }
+}

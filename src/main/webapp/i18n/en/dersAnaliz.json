@@ -1,0 +1,29 @@
+{
+  "gamificationApp": {
+    "dersAnaliz": {
+      "home": {
+        "title": "Ders Analizs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Ders Analiz",
+        "createOrEditLabel": "Create or edit a Ders Analiz",
+        "notFound": "No Ders Analizs found"
+      },
+      "created": "A new Ders Analiz is created with identifier {{ param }}",
+      "updated": "A Ders Analiz is updated with identifier {{ param }}",
+      "deleted": "A Ders Analiz is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ders Analiz {{ id }}?"
+      },
+      "detail": {
+        "title": "Ders Analiz"
+      },
+      "id": "ID",
+      "toplamYanlis": "Toplam Yanlis",
+      "toplamDogru": "Toplam Dogru",
+      "cozulenSoru": "Cozulen Soru",
+      "tamamlandi": "Tamamlandi",
+      "aitOldBolum": "Ait Old Bolum",
+      "kayitlar3": "Kayitlar 3"
+    }
+  }
+}

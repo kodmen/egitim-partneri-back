@@ -1,0 +1,105 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-kayit-heading" data-cy="KayitCreateUpdateHeading" jhiTranslate="gamificationApp.kayit.home.createOrEditLabel">
+        Create or edit a Kayit
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.kayit.puan" for="field_puan">Puan</label>
+          <input type="number" class="form-control" name="puan" id="field_puan" data-cy="puan" formControlName="puan" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.kayit.kayitTarih" for="field_kayitTarih">Kayit Tarih</label>
+          <div class="input-group">
+            <input
+              id="field_kayitTarih"
+              data-cy="kayitTarih"
+              type="text"
+              class="form-control"
+              name="kayitTarih"
+              ngbDatepicker
+              #kayitTarihDp="ngbDatepicker"
+              formControlName="kayitTarih"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="kayitTarihDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label jhiTranslate="gamificationApp.kayit.dersAnalizleri" for="field_dersAnalizleris">Ders Analizleri</label>
+          <select
+            class="form-control"
+            id="field_dersAnalizleris"
+            data-cy="dersAnalizleri"
+            multiple
+            name="dersAnalizleris"
+            formControlName="dersAnalizleris"
+          >
+            <option
+              [ngValue]="getSelectedDersAnaliz(dersAnalizOption, editForm.get('dersAnalizleris')!.value)"
+              *ngFor="let dersAnalizOption of dersAnalizsSharedCollection; trackBy: trackDersAnalizById"
+            >
+              {{ dersAnalizOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.kayit.aitOldDers" for="field_aitOldDers">Ait Old Ders</label>
+          <select class="form-control" id="field_aitOldDers" data-cy="aitOldDers" name="aitOldDers" formControlName="aitOldDers">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="dersOption.id === editForm.get('aitOldDers')!.value?.id ? editForm.get('aitOldDers')!.value : dersOption"
+              *ngFor="let dersOption of dersSharedCollection; trackBy: trackDersById"
+            >
+              {{ dersOption.isim }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.kayit.kayitOgrenci" for="field_kayitOgrenci">Kayit Ogrenci</label>
+          <select class="form-control" id="field_kayitOgrenci" data-cy="kayitOgrenci" name="kayitOgrenci" formControlName="kayitOgrenci">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="ogrenciOption.id === editForm.get('kayitOgrenci')!.value?.id ? editForm.get('kayitOgrenci')!.value : ogrenciOption"
+              *ngFor="let ogrenciOption of ogrencisSharedCollection; trackBy: trackOgrenciById"
+            >
+              {{ ogrenciOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

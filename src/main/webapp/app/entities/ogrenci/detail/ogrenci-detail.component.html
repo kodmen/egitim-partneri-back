@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ogrenci">
+      <h2 data-cy="ogrenciDetailsHeading"><span jhiTranslate="gamificationApp.ogrenci.detail.title">Ogrenci</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ ogrenci.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ogrenci.level">Level</span></dt>
+        <dd>
+          <span>{{ ogrenci.level }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ogrenci.aciklama">Aciklama</span></dt>
+        <dd>
+          <span>{{ ogrenci.aciklama }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ogrenci.toplamPuan">Toplam Puan</span></dt>
+        <dd>
+          <span>{{ ogrenci.toplamPuan }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ogrenci.studentUser">Student User</span></dt>
+        <dd>
+          <span>{{ ogrenci.studentUser?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.ogrenci.rozetler">Rozetler</span></dt>
+        <dd>
+          <span *ngFor="let rozetler of ogrenci.rozetlers; let last = last">
+            <a [routerLink]="['/rozet', rozetler?.id, 'view']">{{ rozetler.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ogrenci', ogrenci.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

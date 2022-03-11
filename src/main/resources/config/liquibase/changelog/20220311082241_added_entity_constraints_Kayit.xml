@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Kayit.
+    -->
+    <changeSet id="20220311082241-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="kayit_id"
+                                 baseTableName="rel_kayit__ders_analizleri"
+                                 constraintName="fk_rel_kayit__ders_analizleri__kayit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="kayit"/>
+
+        <addForeignKeyConstraint baseColumnNames="ders_analizleri_id"
+                                 baseTableName="rel_kayit__ders_analizleri"
+                                 constraintName="fk_rel_kayit__ders_analizleri__ders_analizleri_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ders_analiz"/>
+
+        <addForeignKeyConstraint baseColumnNames="ait_old_ders_id"
+                                 baseTableName="kayit"
+                                 constraintName="fk_kayit__ait_old_ders_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ders"/>
+
+        <addForeignKeyConstraint baseColumnNames="kayit_ogrenci_id"
+                                 baseTableName="kayit"
+                                 constraintName="fk_kayit__kayit_ogrenci_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ogrenci"/>
+    </changeSet>
+</databaseChangeLog>

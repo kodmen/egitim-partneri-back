@@ -1,0 +1,76 @@
+<div>
+  <h2 id="page-heading" data-cy="BolumHeading">
+    <span jhiTranslate="gamificationApp.bolum.home.title">Bolums</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gamificationApp.bolum.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-bolum"
+        [routerLink]="['/bolum/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gamificationApp.bolum.home.createLabel"> Create a new Bolum </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="bolums?.length === 0">
+    <span jhiTranslate="gamificationApp.bolum.home.notFound">No bolums found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="bolums && bolums.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.bolum.bolumBaslik">Bolum Baslik</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.bolum.dokuman">Dokuman</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.bolum.puan">Puan</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.bolum.videoLink">Video Link</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.bolum.sure">Sure</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bolum of bolums; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/bolum', bolum.id, 'view']">{{ bolum.id }}</a>
+          </td>
+          <td>{{ bolum.bolumBaslik }}</td>
+          <td>{{ bolum.dokuman }}</td>
+          <td>{{ bolum.puan }}</td>
+          <td>{{ bolum.videoLink }}</td>
+          <td>{{ bolum.sure }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/bolum', bolum.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/bolum', bolum.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(bolum)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

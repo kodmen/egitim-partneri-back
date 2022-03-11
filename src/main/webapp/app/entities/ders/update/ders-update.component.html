@@ -1,0 +1,178 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-ders-heading" data-cy="DersCreateUpdateHeading" jhiTranslate="gamificationApp.ders.home.createOrEditLabel">
+        Create or edit a Ders
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ders.isim" for="field_isim">Isim</label>
+          <input type="text" class="form-control" name="isim" id="field_isim" data-cy="isim" formControlName="isim" />
+          <div *ngIf="editForm.get('isim')!.invalid && (editForm.get('isim')!.dirty || editForm.get('isim')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('isim')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 500 }"
+            >
+              This field cannot be longer than 500 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ders.toplamPuan" for="field_toplamPuan">Toplam Puan</label>
+          <input
+            type="number"
+            class="form-control"
+            name="toplamPuan"
+            id="field_toplamPuan"
+            data-cy="toplamPuan"
+            formControlName="toplamPuan"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ders.olusturulmaTarih" for="field_olusturulmaTarih"
+            >Olusturulma Tarih</label
+          >
+          <div class="input-group">
+            <input
+              id="field_olusturulmaTarih"
+              data-cy="olusturulmaTarih"
+              type="text"
+              class="form-control"
+              name="olusturulmaTarih"
+              ngbDatepicker
+              #olusturulmaTarihDp="ngbDatepicker"
+              formControlName="olusturulmaTarih"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="olusturulmaTarihDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ders.aciklama" for="field_aciklama">Aciklama</label>
+          <textarea class="form-control" name="aciklama" id="field_aciklama" data-cy="aciklama" formControlName="aciklama"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ders.resim" for="field_resim">Resim</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('resimContentType')!.value + ';base64,' + editForm.get('resim')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('resim')!.value"
+              alt="ders image"
+            />
+            <div *ngIf="editForm.get('resim')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left">{{ editForm.get('resimContentType')!.value }}, {{ byteSize(editForm.get('resim')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('resim', 'resimContentType', 'file_resim')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_resim"
+              data-cy="resim"
+              (change)="setFileData($event, 'resim', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="resim" id="field_resim" data-cy="resim" formControlName="resim" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="resimContentType"
+            id="field_resimContentType"
+            formControlName="resimContentType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ders.dersMufredat" for="field_dersMufredat">Ders Mufredat</label>
+          <select class="form-control" id="field_dersMufredat" data-cy="dersMufredat" name="dersMufredat" formControlName="dersMufredat">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                mufredatOption.id === editForm.get('dersMufredat')!.value?.id ? editForm.get('dersMufredat')!.value : mufredatOption
+              "
+              *ngFor="let mufredatOption of dersMufredatsCollection; trackBy: trackMufredatById"
+            >
+              {{ mufredatOption.mufredatBaslik }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ders.dersForm" for="field_dersForm">Ders Form</label>
+          <select class="form-control" id="field_dersForm" data-cy="dersForm" name="dersForm" formControlName="dersForm">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="formOption.id === editForm.get('dersForm')!.value?.id ? editForm.get('dersForm')!.value : formOption"
+              *ngFor="let formOption of dersFormsCollection; trackBy: trackFormById"
+            >
+              {{ formOption.baslik }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.ders.dersOgretmeni" for="field_dersOgretmeni"
+            >Ders Ogretmeni</label
+          >
+          <select
+            class="form-control"
+            id="field_dersOgretmeni"
+            data-cy="dersOgretmeni"
+            name="dersOgretmeni"
+            formControlName="dersOgretmeni"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                ogretmenOption.id === editForm.get('dersOgretmeni')!.value?.id ? editForm.get('dersOgretmeni')!.value : ogretmenOption
+              "
+              *ngFor="let ogretmenOption of ogretmenSharedCollection; trackBy: trackOgretmenById"
+            >
+              {{ ogretmenOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+application {
+  config {
+    baseName Gamification,
+    applicationType monolith,
+    packageName com.hanrideb,
+    authenticationType jwt,
+    prodDatabaseType postgresql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity Ogrenci{
+  level Long
+  aciklama TextBlob
+  toplamPuan Integer
+}
+entity Ogretmen{
+  aciklama TextBlob
+}
+entity Rozet{
+  rozetIsmi String maxlength(500)
+  rozetResim ImageBlob
+}
+entity Kayit{
+  puan Integer
+  kayitTarih LocalDate
+}
+entity DersAnaliz{
+  toplamYanlis Integer
+  toplamDogru Integer
+  cozulenSoru Integer
+  tamamlandi Boolean
+}
+entity Ders{
+  isim String maxlength(500)
+  toplamPuan Integer
+  olusturulmaTarih LocalDate
+  aciklama TextBlob
+  resim ImageBlob
+}
+entity Mufredat{
+  mufredatBaslik String maxlength(500)
+  toplamSure String
+  bolumSayi Integer
+}
+entity Bolum{
+  bolumBaslik String maxlength(500)
+  dokuman TextBlob
+  puan Integer
+  videoLink String maxlength(1000)
+  sure String
+}
+entity SoruTest{
+  tesBaslik String maxlength(500)
+  testPdf String maxlength(500)
+  testFoto ImageBlob
+}
+entity Soru{
+  cevap String
+
+}
+entity SoruKazanimlari{
+  kazanim String
+}
+entity Form{
+  baslik String
+}
+entity Yorum{
+  yazi String maxlength(10000)
+  date LocalDate
+}
+
+entity Blog {
+  name String
+	handle String
+}
+
+entity Entry {
+  title String maxlength(500) 
+  content TextBlob
+	date ZonedDateTime
+  foto ImageBlob
+}
+
+entity Tag {
+  name String maxlength(500) 
+}
+
+entity SiteInfo{
+  baslik String
+}
+
+relationship OneToOne {
+  Ders{dersMufredat(mufredatBaslik)} to Mufredat{mufredatDers}
+  Ogrenci{studentUser(login)} to User
+  Ders{dersForm(baslik)} to Form{formDers}
+  Ogretmen{ogretmenUser(login)} to User
+}
+
+relationship OneToMany {
+  Ders{kayitlar1} to Kayit{aitOldDers(isim)}
+  Bolum{analizBolum} to DersAnaliz{aitOldBolum(bolumBaslik)}
+  Bolum{testler(tesBaslik)} to SoruTest{testBolum(bolumBaslik)}
+  Form{yorumlar1} to Yorum{formYorum}
+  Ogretmen{dersler} to Ders{dersOgretmeni}
+  Ogrenci{kayitlar2} to Kayit{kayitOgrenci}
+}
+
+relationship ManyToOne{
+  Yorum{userYorum(login)} to User{yorumlar2}
+	Blog{user(login)} to User
+ 	Entry{blog(name)} to Blog
+}
+
+relationship ManyToMany{
+  Kayit{dersAnalizleri} to DersAnaliz{kayitlar3}
+  Ogrenci{rozetler} to Rozet{ogrenciler}
+  Mufredat{bolumler(bolumBaslik)} to Bolum{mufredatlar(mufredatBaslik)}
+  SoruTest{sorular} to Soru{aitOldTestler}
+  Soru{kazanimlar(kazanim)} to SoruKazanimlari{aitOldSorular}
+  Entry{tag(name)} to Tag{entry}
+}

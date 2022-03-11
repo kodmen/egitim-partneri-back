@@ -1,0 +1,45 @@
+{
+  "name": "Kayit",
+  "fields": [
+    {
+      "fieldName": "puan",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "kayitTarih",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "dersAnaliz",
+      "otherEntityRelationshipName": "kayitlar3",
+      "relationshipName": "dersAnalizleri",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "ders",
+      "otherEntityRelationshipName": "kayitlar1",
+      "relationshipName": "aitOldDers",
+      "otherEntityField": "isim"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "ogrenci",
+      "otherEntityRelationshipName": "kayitlar2",
+      "relationshipName": "kayitOgrenci"
+    }
+  ],
+  "entityTableName": "kayit",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311082241"
+}

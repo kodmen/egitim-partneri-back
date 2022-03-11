@@ -1,0 +1,32 @@
+{
+  "gamificationApp": {
+    "ders": {
+      "home": {
+        "title": "Ders",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Ders",
+        "createOrEditLabel": "Create or edit a Ders",
+        "notFound": "No Ders found"
+      },
+      "created": "A new Ders is created with identifier {{ param }}",
+      "updated": "A Ders is updated with identifier {{ param }}",
+      "deleted": "A Ders is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ders {{ id }}?"
+      },
+      "detail": {
+        "title": "Ders"
+      },
+      "id": "ID",
+      "isim": "Isim",
+      "toplamPuan": "Toplam Puan",
+      "olusturulmaTarih": "Olusturulma Tarih",
+      "aciklama": "Aciklama",
+      "resim": "Resim",
+      "dersMufredat": "Ders Mufredat",
+      "dersForm": "Ders Form",
+      "kayitlar1": "Kayitlar 1",
+      "dersOgretmeni": "Ders Ogretmeni"
+    }
+  }
+}

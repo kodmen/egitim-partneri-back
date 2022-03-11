@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Ogrenci.
+    -->
+    <changeSet id="20220311081941-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="student_user_id"
+                                 baseTableName="ogrenci"
+                                 constraintName="fk_ogrenci__student_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="ogrenci_id"
+                                 baseTableName="rel_ogrenci__rozetler"
+                                 constraintName="fk_rel_ogrenci__rozetler__ogrenci_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ogrenci"/>
+
+        <addForeignKeyConstraint baseColumnNames="rozetler_id"
+                                 baseTableName="rel_ogrenci__rozetler"
+                                 constraintName="fk_rel_ogrenci__rozetler__rozetler_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rozet"/>
+    </changeSet>
+</databaseChangeLog>

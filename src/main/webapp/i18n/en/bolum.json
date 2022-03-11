@@ -1,0 +1,31 @@
+{
+  "gamificationApp": {
+    "bolum": {
+      "home": {
+        "title": "Bolums",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Bolum",
+        "createOrEditLabel": "Create or edit a Bolum",
+        "notFound": "No Bolums found"
+      },
+      "created": "A new Bolum is created with identifier {{ param }}",
+      "updated": "A Bolum is updated with identifier {{ param }}",
+      "deleted": "A Bolum is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Bolum {{ id }}?"
+      },
+      "detail": {
+        "title": "Bolum"
+      },
+      "id": "ID",
+      "bolumBaslik": "Bolum Baslik",
+      "dokuman": "Dokuman",
+      "puan": "Puan",
+      "videoLink": "Video Link",
+      "sure": "Sure",
+      "analizBolum": "Analiz Bolum",
+      "testler": "Testler",
+      "mufredatlar": "Mufredatlar"
+    }
+  }
+}

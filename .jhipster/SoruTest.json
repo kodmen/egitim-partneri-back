@@ -1,0 +1,48 @@
+{
+  "name": "SoruTest",
+  "fields": [
+    {
+      "fieldName": "tesBaslik",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "500"
+    },
+    {
+      "fieldName": "testPdf",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "500"
+    },
+    {
+      "fieldName": "testFoto",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "soru",
+      "otherEntityRelationshipName": "aitOldTestler",
+      "relationshipName": "sorular",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "bolum",
+      "otherEntityRelationshipName": "testler",
+      "relationshipName": "testBolum",
+      "otherEntityField": "bolumBaslik"
+    }
+  ],
+  "entityTableName": "soru_test",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["Gamification"],
+  "changelogDate": "20220311082741"
+}

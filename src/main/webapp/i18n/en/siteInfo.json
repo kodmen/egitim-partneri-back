@@ -1,0 +1,24 @@
+{
+  "gamificationApp": {
+    "siteInfo": {
+      "home": {
+        "title": "Site Infos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Site Info",
+        "createOrEditLabel": "Create or edit a Site Info",
+        "notFound": "No Site Infos found"
+      },
+      "created": "A new Site Info is created with identifier {{ param }}",
+      "updated": "A Site Info is updated with identifier {{ param }}",
+      "deleted": "A Site Info is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Site Info {{ id }}?"
+      },
+      "detail": {
+        "title": "Site Info"
+      },
+      "id": "ID",
+      "baslik": "Baslik"
+    }
+  }
+}
