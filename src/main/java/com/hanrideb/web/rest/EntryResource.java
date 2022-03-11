@@ -2,6 +2,7 @@ package com.hanrideb.web.rest;
 
 import com.hanrideb.domain.Entry;
 import com.hanrideb.repository.EntryRepository;
+import com.hanrideb.service.EntryService;
 import com.hanrideb.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -35,9 +36,11 @@ public class EntryResource {
     private String applicationName;
 
     private final EntryRepository entryRepository;
+    private final EntryService entryService;
 
-    public EntryResource(EntryRepository entryRepository) {
+    public EntryResource(EntryRepository entryRepository, EntryService entryService) {
         this.entryRepository = entryRepository;
+        this.entryService = entryService;
     }
 
     /**
@@ -156,8 +159,12 @@ public class EntryResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of entries in body.
      */
     @GetMapping("/entries")
-    public List<Entry> getAllEntries(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<Entry> getAllEntries(@RequestParam(required = false) String tag) {
         log.debug("REST request to get all Entries");
+        if (tag != null) {
+            //burda gelen tag değeriini serviste olup olmadığı kontrol edilmesi lazım
+            return entryService.getByTagsName(tag);
+        }
         return entryRepository.findAllWithEagerRelationships();
     }
 
@@ -189,4 +196,10 @@ public class EntryResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
     }
+    //    @GetMapping("/entries/tag")
+    //    public List<Entry> getAllByTageName(@RequestParam String tag) {
+    //        log.debug("REST request to get Entry by tag name : {}", tag);
+    ////        Optional<Entry> entry = entryRepository.findOneWithEagerRelationships(id);
+    //        return entryService.getByTagsName(tag);
+    //    }
 }

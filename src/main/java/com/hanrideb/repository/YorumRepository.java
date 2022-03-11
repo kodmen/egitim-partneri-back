@@ -13,4 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface YorumRepository extends JpaRepository<Yorum, Long> {
     @Query("select yorum from Yorum yorum where yorum.userYorum.login = ?#{principal.username}")
     List<Yorum> findByUserYorumIsCurrentUser();
+
+    List<Yorum> findByFormYorum_Id(long id);
 }

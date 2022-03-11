@@ -2,6 +2,7 @@ package com.hanrideb.web.rest;
 
 import com.hanrideb.domain.Yorum;
 import com.hanrideb.repository.YorumRepository;
+import com.hanrideb.service.YorumService;
 import com.hanrideb.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -35,9 +36,11 @@ public class YorumResource {
     private String applicationName;
 
     private final YorumRepository yorumRepository;
+    private final YorumService yorumService;
 
-    public YorumResource(YorumRepository yorumRepository) {
+    public YorumResource(YorumRepository yorumRepository, YorumService yorumService) {
         this.yorumRepository = yorumRepository;
+        this.yorumService = yorumService;
     }
 
     /**
@@ -178,5 +181,12 @@ public class YorumResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/yorums/form/{id}")
+    public List<Yorum> getListYorumByForum(@PathVariable Long id) {
+        log.debug("REST request to get Yorum : {}", id);
+        //        Optional<List<Yorum>> yorum = Optional.of(yorumService.getByFormIdAllYorum(id));
+        return yorumService.getByFormIdAllYorum(id);
     }
 }
