@@ -2,6 +2,7 @@ package com.hanrideb.web.rest;
 
 import com.hanrideb.domain.Ogrenci;
 import com.hanrideb.repository.OgrenciRepository;
+import com.hanrideb.service.OgrenciService;
 import com.hanrideb.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -34,8 +35,11 @@ public class OgrenciResource {
 
     private final OgrenciRepository ogrenciRepository;
 
-    public OgrenciResource(OgrenciRepository ogrenciRepository) {
+    private final OgrenciService ogrenciService;
+
+    public OgrenciResource(OgrenciRepository ogrenciRepository, OgrenciService ogrenciService) {
         this.ogrenciRepository = ogrenciRepository;
+        this.ogrenciService = ogrenciService;
     }
 
     /**
@@ -151,6 +155,22 @@ public class OgrenciResource {
     public List<Ogrenci> getAllOgrencis(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all Ogrencis");
         return ogrenciRepository.findAllWithEagerRelationships();
+    }
+
+    /**
+     * {@code GET  /ogrencis} : get all the ogrencis.
+     *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of ogrencis in body.
+     */
+    @GetMapping("/ogrenci")
+    public Ogrenci getActiveOgrenci() throws Exception {
+        log.debug("REST request to get all Ogrencis");
+        try {
+            return ogrenciService.getByUserId();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**

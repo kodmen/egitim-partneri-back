@@ -1,4 +1,4 @@
-package com.hanrideb.service;
+package com.hanrideb.service.exception;
 
 public class InvalidPasswordException extends RuntimeException {
 

@@ -207,4 +207,13 @@ public class Ogrenci implements Serializable {
             ", toplamPuan=" + getToplamPuan() +
             "}";
     }
+
+    public static Ogrenci bosOgrenciOlustur() {
+        Ogrenci ogrenci = new Ogrenci();
+        ogrenci.setLevel(0L);
+        ogrenci.setAciklama("");
+        ogrenci.setToplamPuan(0);
+
+        return ogrenci;
+    }
 }

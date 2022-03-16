@@ -3,6 +3,7 @@ package com.hanrideb.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -168,5 +169,13 @@ public class Kayit implements Serializable {
             ", puan=" + getPuan() +
             ", kayitTarih='" + getKayitTarih() + "'" +
             "}";
+    }
+
+    public static Kayit bosKayitUret() {
+        Kayit kayit = new Kayit();
+        kayit.kayitTarih(LocalDate.now());
+        kayit.setPuan(0);
+        kayit.setDersAnalizleris(new HashSet<DersAnaliz>());
+        return kayit;
     }
 }

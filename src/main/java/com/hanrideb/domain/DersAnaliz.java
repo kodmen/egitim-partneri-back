@@ -186,4 +186,19 @@ public class DersAnaliz implements Serializable {
             ", tamamlandi='" + getTamamlandi() + "'" +
             "}";
     }
+
+    public static DersAnaliz bosDersAnaliz() {
+        DersAnaliz dersAnaliz = new DersAnaliz();
+        dersAnaliz.setCozulenSoru(0);
+        dersAnaliz.setToplamDogru(0);
+        dersAnaliz.setToplamYanlis(0);
+        dersAnaliz.setTamamlandi(false);
+        return dersAnaliz;
+    }
+
+    public static DersAnaliz uretDersAnalizBolum(Bolum bolum) {
+        DersAnaliz dersAnaliz = bosDersAnaliz();
+        dersAnaliz.setAitOldBolum(bolum);
+        return dersAnaliz;
+    }
 }

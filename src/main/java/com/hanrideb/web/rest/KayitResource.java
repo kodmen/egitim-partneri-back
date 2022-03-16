@@ -2,6 +2,7 @@ package com.hanrideb.web.rest;
 
 import com.hanrideb.domain.Kayit;
 import com.hanrideb.repository.KayitRepository;
+import com.hanrideb.service.KayitService;
 import com.hanrideb.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -33,9 +34,11 @@ public class KayitResource {
     private String applicationName;
 
     private final KayitRepository kayitRepository;
+    private final KayitService kayitService;
 
-    public KayitResource(KayitRepository kayitRepository) {
+    public KayitResource(KayitRepository kayitRepository, KayitService kayitService) {
         this.kayitRepository = kayitRepository;
+        this.kayitService = kayitService;
     }
 
     /**
@@ -54,6 +57,17 @@ public class KayitResource {
         Kayit result = kayitRepository.save(kayit);
         return ResponseEntity
             .created(new URI("/api/kayits/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
+    @PostMapping("/kayit")
+    public ResponseEntity<Kayit> createKayitByDersId(@RequestBody long dersId) throws Exception {
+        log.debug("REST request to save Kayit : {}", dersId);
+
+        Kayit result = kayitService.save(dersId);
+        return ResponseEntity
+            .created(new URI("/api/kayit/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }

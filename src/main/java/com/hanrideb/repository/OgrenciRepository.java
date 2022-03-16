@@ -25,4 +25,6 @@ public interface OgrenciRepository extends JpaRepository<Ogrenci, Long> {
 
     @Query("select ogrenci from Ogrenci ogrenci left join fetch ogrenci.rozetlers where ogrenci.id =:id")
     Optional<Ogrenci> findOneWithEagerRelationships(@Param("id") Long id);
+
+    Optional<Ogrenci> findByStudentUser_Id(Long id);
 }

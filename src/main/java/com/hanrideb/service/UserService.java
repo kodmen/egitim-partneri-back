@@ -2,13 +2,18 @@ package com.hanrideb.service;
 
 import com.hanrideb.config.Constants;
 import com.hanrideb.domain.Authority;
+import com.hanrideb.domain.Ogrenci;
 import com.hanrideb.domain.User;
 import com.hanrideb.repository.AuthorityRepository;
+import com.hanrideb.repository.OgrenciRepository;
 import com.hanrideb.repository.UserRepository;
 import com.hanrideb.security.AuthoritiesConstants;
 import com.hanrideb.security.SecurityUtils;
 import com.hanrideb.service.dto.AdminUserDTO;
 import com.hanrideb.service.dto.UserDTO;
+import com.hanrideb.service.exception.EmailAlreadyUsedException;
+import com.hanrideb.service.exception.InvalidPasswordException;
+import com.hanrideb.service.exception.UsernameAlreadyUsedException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -41,16 +46,20 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
+    private final OgrenciRepository ogrenciRepository;
+
     public UserService(
         UserRepository userRepository,
         PasswordEncoder passwordEncoder,
         AuthorityRepository authorityRepository,
-        CacheManager cacheManager
+        CacheManager cacheManager,
+        OgrenciRepository ogrenciRepository
     ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.ogrenciRepository = ogrenciRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -129,7 +138,12 @@ public class UserService {
         Set<Authority> authorities = new HashSet<>();
         authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
         newUser.setAuthorities(authorities);
-        userRepository.save(newUser);
+
+        User user1 = userRepository.save(newUser);
+        Ogrenci yeniOgrenci = Ogrenci.bosOgrenciOlustur();
+        yeniOgrenci.setStudentUser(user1);
+        ogrenciRepository.save(yeniOgrenci);
+
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
@@ -175,6 +189,11 @@ public class UserService {
             user.setAuthorities(authorities);
         }
         userRepository.save(user);
+        //        User user1 =
+        //        Ogrenci yeniOgrenci = Ogrenci.bosOgrenciOlustur();
+        //        yeniOgrenci.setStudentUser(user1);
+        //        ogrenciRepository.save(yeniOgrenci);
+
         this.clearUserCaches(user);
         log.debug("Created Information for User: {}", user);
         return user;
