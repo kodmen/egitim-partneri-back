@@ -25,4 +25,8 @@ public interface KayitRepository extends JpaRepository<Kayit, Long> {
 
     @Query("select kayit from Kayit kayit left join fetch kayit.dersAnalizleris where kayit.id =:id")
     Optional<Kayit> findOneWithEagerRelationships(@Param("id") Long id);
+
+    Boolean existsByAitOldDers_IdAndKayitOgrenci_Id(Long dersId, Long ogrenciId);
+
+    List<Kayit> findAllByKayitOgrenci_Id(Long id);
 }

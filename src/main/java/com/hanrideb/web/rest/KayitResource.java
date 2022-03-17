@@ -3,6 +3,7 @@ package com.hanrideb.web.rest;
 import com.hanrideb.domain.Kayit;
 import com.hanrideb.repository.KayitRepository;
 import com.hanrideb.service.KayitService;
+import com.hanrideb.service.exception.KayitBulunamadiException;
 import com.hanrideb.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -65,6 +66,11 @@ public class KayitResource {
     public ResponseEntity<Kayit> createKayitByDersId(@RequestBody long dersId) throws Exception {
         log.debug("REST request to save Kayit : {}", dersId);
 
+        if (kayitService.checkTheStudentRegisteredForTheCourse(dersId)) {
+            //throw new KayitBulunamadiException();
+            throw new BadRequestAlertException("The student has already registered for this course.", ENTITY_NAME, "idexists");
+        }
+
         Kayit result = kayitService.save(dersId);
         return ResponseEntity
             .created(new URI("/api/kayit/" + result.getId()))
@@ -75,7 +81,7 @@ public class KayitResource {
     /**
      * {@code PUT  /kayits/:id} : Updates an existing kayit.
      *
-     * @param id the id of the kayit to save.
+     * @param id    the id of the kayit to save.
      * @param kayit the kayit to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated kayit,
      * or with status {@code 400 (Bad Request)} if the kayit is not valid,
@@ -107,7 +113,7 @@ public class KayitResource {
     /**
      * {@code PATCH  /kayits/:id} : Partial updates given fields of an existing kayit, field will ignore if it is null
      *
-     * @param id the id of the kayit to save.
+     * @param id    the id of the kayit to save.
      * @param kayit the kayit to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated kayit,
      * or with status {@code 400 (Bad Request)} if the kayit is not valid,
@@ -160,6 +166,16 @@ public class KayitResource {
     public List<Kayit> getAllKayits(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all Kayits");
         return kayitRepository.findAllWithEagerRelationships();
+    }
+
+    @GetMapping("/kayit")
+    public List<Kayit> getAllKayitsByStudent() {
+        log.debug("REST request to get all Kayits");
+        try {
+            return kayitService.getUserKayit();
+        } catch (Exception e) {
+            throw new BadRequestAlertException("Ogrenci bulunamadı", ENTITY_NAME, "idnull");
+        }
     }
 
     /**
