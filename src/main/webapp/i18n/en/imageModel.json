@@ -1,0 +1,26 @@
+{
+  "gamificationApp": {
+    "imageModel": {
+      "home": {
+        "title": "Image Models",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Image Model",
+        "createOrEditLabel": "Create or edit a Image Model",
+        "notFound": "No Image Models found"
+      },
+      "created": "A new Image Model is created with identifier {{ param }}",
+      "updated": "A Image Model is updated with identifier {{ param }}",
+      "deleted": "A Image Model is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Image Model {{ id }}?"
+      },
+      "detail": {
+        "title": "Image Model"
+      },
+      "id": "ID",
+      "name": "Name",
+      "type": "Type",
+      "img": "Img"
+    }
+  }
+}

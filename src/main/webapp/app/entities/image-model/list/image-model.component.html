@@ -1,0 +1,91 @@
+<div>
+  <h2 id="page-heading" data-cy="ImageModelHeading">
+    <span jhiTranslate="gamificationApp.imageModel.home.title">Image Models</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gamificationApp.imageModel.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-image-model"
+        [routerLink]="['/image-model/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gamificationApp.imageModel.home.createLabel"> Create a new Image Model </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="imageModels?.length === 0">
+    <span jhiTranslate="gamificationApp.imageModel.home.notFound">No imageModels found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="imageModels && imageModels.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.imageModel.name">Name</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.imageModel.type">Type</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.imageModel.img">Img</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let imageModel of imageModels; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/image-model', imageModel.id, 'view']">{{ imageModel.id }}</a>
+          </td>
+          <td>{{ imageModel.name }}</td>
+          <td>{{ imageModel.type }}</td>
+          <td>
+            <a *ngIf="imageModel.img" (click)="openFile(imageModel.img, imageModel.imgContentType)">
+              <img
+                [src]="'data:' + imageModel.imgContentType + ';base64,' + imageModel.img"
+                style="max-height: 30px"
+                alt="imageModel image"
+              />
+            </a>
+            <span *ngIf="imageModel.img">{{ imageModel.imgContentType }}, {{ byteSize(imageModel.img) }}</span>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/image-model', imageModel.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/image-model', imageModel.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(imageModel)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

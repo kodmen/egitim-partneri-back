@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="imageModel">
+      <h2 data-cy="imageModelDetailsHeading"><span jhiTranslate="gamificationApp.imageModel.detail.title">Image Model</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ imageModel.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.imageModel.name">Name</span></dt>
+        <dd>
+          <span>{{ imageModel.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.imageModel.type">Type</span></dt>
+        <dd>
+          <span>{{ imageModel.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.imageModel.img">Img</span></dt>
+        <dd>
+          <div *ngIf="imageModel.img">
+            <a (click)="openFile(imageModel.img, imageModel.imgContentType)">
+              <img
+                [src]="'data:' + imageModel.imgContentType + ';base64,' + imageModel.img"
+                style="max-width: 100%"
+                alt="imageModel image"
+              />
+            </a>
+            {{ imageModel.imgContentType }}, {{ byteSize(imageModel.img) }}
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/image-model', imageModel.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
