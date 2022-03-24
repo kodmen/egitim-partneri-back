@@ -7,6 +7,10 @@ export interface ISoruTest {
   testPdf?: string | null;
   testFotoContentType?: string | null;
   testFoto?: string | null;
+  cevaplar?: string | null;
+  soruPdfFileContentType?: string | null;
+  soruPdfFile?: string | null;
+  soruSayisi?: number | null;
   sorulars?: ISoru[] | null;
   testBolum?: IBolum | null;
 }
@@ -18,6 +22,10 @@ export class SoruTest implements ISoruTest {
     public testPdf?: string | null,
     public testFotoContentType?: string | null,
     public testFoto?: string | null,
+    public cevaplar?: string | null,
+    public soruPdfFileContentType?: string | null,
+    public soruPdfFile?: string | null,
+    public soruSayisi?: number | null,
     public sorulars?: ISoru[] | null,
     public testBolum?: IBolum | null
   ) {}

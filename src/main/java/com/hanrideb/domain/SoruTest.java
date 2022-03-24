@@ -40,6 +40,19 @@ public class SoruTest implements Serializable {
     @Column(name = "test_foto_content_type")
     private String testFotoContentType;
 
+    @Column(name = "cevaplar")
+    private String cevaplar;
+
+    @Lob
+    @Column(name = "soru_pdf_file")
+    private byte[] soruPdfFile;
+
+    @Column(name = "soru_pdf_file_content_type")
+    private String soruPdfFileContentType;
+
+    @Column(name = "soru_sayisi")
+    private Integer soruSayisi;
+
     @ManyToMany
     @JoinTable(
         name = "rel_soru_test__sorular",
@@ -121,6 +134,58 @@ public class SoruTest implements Serializable {
         this.testFotoContentType = testFotoContentType;
     }
 
+    public String getCevaplar() {
+        return this.cevaplar;
+    }
+
+    public SoruTest cevaplar(String cevaplar) {
+        this.setCevaplar(cevaplar);
+        return this;
+    }
+
+    public void setCevaplar(String cevaplar) {
+        this.cevaplar = cevaplar;
+    }
+
+    public byte[] getSoruPdfFile() {
+        return this.soruPdfFile;
+    }
+
+    public SoruTest soruPdfFile(byte[] soruPdfFile) {
+        this.setSoruPdfFile(soruPdfFile);
+        return this;
+    }
+
+    public void setSoruPdfFile(byte[] soruPdfFile) {
+        this.soruPdfFile = soruPdfFile;
+    }
+
+    public String getSoruPdfFileContentType() {
+        return this.soruPdfFileContentType;
+    }
+
+    public SoruTest soruPdfFileContentType(String soruPdfFileContentType) {
+        this.soruPdfFileContentType = soruPdfFileContentType;
+        return this;
+    }
+
+    public void setSoruPdfFileContentType(String soruPdfFileContentType) {
+        this.soruPdfFileContentType = soruPdfFileContentType;
+    }
+
+    public Integer getSoruSayisi() {
+        return this.soruSayisi;
+    }
+
+    public SoruTest soruSayisi(Integer soruSayisi) {
+        this.setSoruSayisi(soruSayisi);
+        return this;
+    }
+
+    public void setSoruSayisi(Integer soruSayisi) {
+        this.soruSayisi = soruSayisi;
+    }
+
     public Set<Soru> getSorulars() {
         return this.sorulars;
     }
@@ -187,6 +252,10 @@ public class SoruTest implements Serializable {
             ", testPdf='" + getTestPdf() + "'" +
             ", testFoto='" + getTestFoto() + "'" +
             ", testFotoContentType='" + getTestFotoContentType() + "'" +
+            ", cevaplar='" + getCevaplar() + "'" +
+            ", soruPdfFile='" + getSoruPdfFile() + "'" +
+            ", soruPdfFileContentType='" + getSoruPdfFileContentType() + "'" +
+            ", soruSayisi=" + getSoruSayisi() +
             "}";
     }
 }

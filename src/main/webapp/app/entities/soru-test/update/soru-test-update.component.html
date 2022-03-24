@@ -84,6 +84,71 @@
         </div>
 
         <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.soruTest.cevaplar" for="field_cevaplar">Cevaplar</label>
+          <input type="text" class="form-control" name="cevaplar" id="field_cevaplar" data-cy="cevaplar" formControlName="cevaplar" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.soruTest.soruPdfFile" for="field_soruPdfFile"
+            >Soru Pdf File</label
+          >
+          <div>
+            <div *ngIf="editForm.get('soruPdfFile')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-left"
+                (click)="openFile(editForm.get('soruPdfFile')!.value, editForm.get('soruPdfFileContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-left"
+                >{{ editForm.get('soruPdfFileContentType')!.value }}, {{ byteSize(editForm.get('soruPdfFile')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ soruPdfFile: null }); editForm.patchValue({ soruPdfFileContentType: null })"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_soruPdfFile"
+              data-cy="soruPdfFile"
+              (change)="setFileData($event, 'soruPdfFile', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="soruPdfFile"
+            id="field_soruPdfFile"
+            data-cy="soruPdfFile"
+            formControlName="soruPdfFile"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="soruPdfFileContentType"
+            id="field_soruPdfFileContentType"
+            formControlName="soruPdfFileContentType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.soruTest.soruSayisi" for="field_soruSayisi">Soru Sayisi</label>
+          <input
+            type="number"
+            class="form-control"
+            name="soruSayisi"
+            id="field_soruSayisi"
+            data-cy="soruSayisi"
+            formControlName="soruSayisi"
+          />
+        </div>
+
+        <div class="form-group">
           <label jhiTranslate="gamificationApp.soruTest.sorular" for="field_sorulars">Sorular</label>
           <select class="form-control" id="field_sorulars" data-cy="sorular" multiple name="sorulars" formControlName="sorulars">
             <option

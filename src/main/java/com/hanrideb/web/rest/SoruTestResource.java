@@ -137,6 +137,18 @@ public class SoruTestResource {
                 if (soruTest.getTestFotoContentType() != null) {
                     existingSoruTest.setTestFotoContentType(soruTest.getTestFotoContentType());
                 }
+                if (soruTest.getCevaplar() != null) {
+                    existingSoruTest.setCevaplar(soruTest.getCevaplar());
+                }
+                if (soruTest.getSoruPdfFile() != null) {
+                    existingSoruTest.setSoruPdfFile(soruTest.getSoruPdfFile());
+                }
+                if (soruTest.getSoruPdfFileContentType() != null) {
+                    existingSoruTest.setSoruPdfFileContentType(soruTest.getSoruPdfFileContentType());
+                }
+                if (soruTest.getSoruSayisi() != null) {
+                    existingSoruTest.setSoruSayisi(soruTest.getSoruSayisi());
+                }
 
                 return existingSoruTest;
             })

@@ -17,6 +17,19 @@
       "fieldName": "testFoto",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "cevaplar",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "soruPdfFile",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "soruSayisi",
+      "fieldType": "Integer"
     }
   ],
   "relationships": [

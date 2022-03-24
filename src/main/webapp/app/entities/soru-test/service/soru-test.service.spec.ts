@@ -25,6 +25,10 @@ describe('SoruTest Service', () => {
       testPdf: 'AAAAAAA',
       testFotoContentType: 'image/png',
       testFoto: 'AAAAAAA',
+      cevaplar: 'AAAAAAA',
+      soruPdfFileContentType: 'image/png',
+      soruPdfFile: 'AAAAAAA',
+      soruSayisi: 0,
     };
   });
 
@@ -63,6 +67,9 @@ describe('SoruTest Service', () => {
           tesBaslik: 'BBBBBB',
           testPdf: 'BBBBBB',
           testFoto: 'BBBBBB',
+          cevaplar: 'BBBBBB',
+          soruPdfFile: 'BBBBBB',
+          soruSayisi: 1,
         },
         elemDefault
       );
@@ -82,6 +89,7 @@ describe('SoruTest Service', () => {
           tesBaslik: 'BBBBBB',
           testPdf: 'BBBBBB',
           testFoto: 'BBBBBB',
+          soruPdfFile: 'BBBBBB',
         },
         new SoruTest()
       );
@@ -104,6 +112,9 @@ describe('SoruTest Service', () => {
           tesBaslik: 'BBBBBB',
           testPdf: 'BBBBBB',
           testFoto: 'BBBBBB',
+          cevaplar: 'BBBBBB',
+          soruPdfFile: 'BBBBBB',
+          soruSayisi: 1,
         },
         elemDefault
       );
@@ -155,7 +166,7 @@ describe('SoruTest Service', () => {
       });
 
       it('should add only unique SoruTest to an array', () => {
-        const soruTestArray: ISoruTest[] = [{ id: 123 }, { id: 456 }, { id: 3791 }];
+        const soruTestArray: ISoruTest[] = [{ id: 123 }, { id: 456 }, { id: 95717 }];
         const soruTestCollection: ISoruTest[] = [{ id: 123 }];
         expectedResult = service.addSoruTestToCollectionIfMissing(soruTestCollection, ...soruTestArray);
         expect(expectedResult).toHaveLength(3);

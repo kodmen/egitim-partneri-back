@@ -35,6 +35,21 @@
             {{ soruTest.testFotoContentType }}, {{ byteSize(soruTest.testFoto) }}
           </div>
         </dd>
+        <dt><span jhiTranslate="gamificationApp.soruTest.cevaplar">Cevaplar</span></dt>
+        <dd>
+          <span>{{ soruTest.cevaplar }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.soruTest.soruPdfFile">Soru Pdf File</span></dt>
+        <dd>
+          <div *ngIf="soruTest.soruPdfFile">
+            <a (click)="openFile(soruTest.soruPdfFile, soruTest.soruPdfFileContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ soruTest.soruPdfFileContentType }}, {{ byteSize(soruTest.soruPdfFile) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.soruTest.soruSayisi">Soru Sayisi</span></dt>
+        <dd>
+          <span>{{ soruTest.soruSayisi }}</span>
+        </dd>
         <dt><span jhiTranslate="gamificationApp.soruTest.sorular">Sorular</span></dt>
         <dd>
           <span *ngFor="let sorular of soruTest.sorulars; let last = last">

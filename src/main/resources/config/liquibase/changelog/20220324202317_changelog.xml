@@ -1,0 +1,404 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="bedir (generated)" id="1648153405415-1">
+        <createSequence incrementBy="50" sequenceName="sequence_generator" startValue="1"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-2">
+        <createTable tableName="blog">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="blogPK"/>
+            </column>
+            <column name="handle" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-3">
+        <createTable tableName="bolum">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="bolumPK"/>
+            </column>
+            <column name="bolum_baslik" type="VARCHAR(500)"/>
+            <column name="dokuman" type="VARCHAR(2147483647)"/>
+            <column name="puan" type="INT"/>
+            <column name="sure" type="VARCHAR(255)"/>
+            <column name="video_link" type="VARCHAR(1000)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-4">
+        <createTable tableName="ders">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="dersPK"/>
+            </column>
+            <column name="aciklama" type="VARCHAR(2147483647)"/>
+            <column name="isim" type="VARCHAR(500)"/>
+            <column name="olusturulma_tarih" type="date"/>
+            <column name="resim" type="BLOB"/>
+            <column name="resim_content_type" type="VARCHAR(255)"/>
+            <column name="toplam_puan" type="INT"/>
+            <column name="ders_form_id" type="BIGINT"/>
+            <column name="ders_mufredat_id" type="BIGINT"/>
+            <column name="ders_ogretmeni_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-5">
+        <createTable tableName="ders_analiz">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ders_analizPK"/>
+            </column>
+            <column name="cozulen_soru" type="INT"/>
+            <column name="tamamlandi" type="BOOLEAN"/>
+            <column name="toplam_dogru" type="INT"/>
+            <column name="toplam_yanlis" type="INT"/>
+            <column name="ait_old_bolum_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-6">
+        <createTable tableName="entry">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="entryPK"/>
+            </column>
+            <column name="content" type="VARCHAR(2147483647)"/>
+            <column name="date" type="TIMESTAMP"/>
+            <column name="foto" type="BLOB"/>
+            <column name="foto_content_type" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(500)"/>
+            <column name="blog_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-7">
+        <createTable tableName="form">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="formPK"/>
+            </column>
+            <column name="baslik" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-8">
+        <createTable tableName="image_model">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="image_modelPK"/>
+            </column>
+            <column name="img" type="BLOB"/>
+            <column name="img_content_type" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-9">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_authorityPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-10">
+        <createTable tableName="jhi_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP"/>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="TIMESTAMP"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(10)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reset_date" type="TIMESTAMP"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-11">
+        <createTable tableName="jhi_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-12">
+        <createTable tableName="kayit">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="kayitPK"/>
+            </column>
+            <column name="kayit_tarih" type="date"/>
+            <column name="puan" type="INT"/>
+            <column name="ait_old_ders_id" type="BIGINT"/>
+            <column name="kayit_ogrenci_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-13">
+        <createTable tableName="mufredat">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="mufredatPK"/>
+            </column>
+            <column name="bolum_sayi" type="INT"/>
+            <column name="mufredat_baslik" type="VARCHAR(500)"/>
+            <column name="toplam_sure" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-14">
+        <createTable tableName="ogrenci">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ogrenciPK"/>
+            </column>
+            <column name="aciklama" type="VARCHAR(2147483647)"/>
+            <column name="level" type="BIGINT"/>
+            <column name="toplam_puan" type="INT"/>
+            <column name="student_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-15">
+        <createTable tableName="ogretmen">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ogretmenPK"/>
+            </column>
+            <column name="aciklama" type="VARCHAR(2147483647)"/>
+            <column name="ogretmen_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-16">
+        <createTable tableName="rel_entry__tag">
+            <column name="entry_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="tag_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-17">
+        <createTable tableName="rel_kayit__ders_analizleri">
+            <column name="kayit_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ders_analizleri_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-18">
+        <createTable tableName="rel_mufredat__bolumler">
+            <column name="mufredat_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="bolumler_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-19">
+        <createTable tableName="rel_ogrenci__rozetler">
+            <column name="ogrenci_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="rozetler_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-20">
+        <createTable tableName="rel_soru__kazanimlar">
+            <column name="soru_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="kazanimlar_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-21">
+        <createTable tableName="rel_soru_test__sorular">
+            <column name="soru_test_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="sorular_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-22">
+        <createTable tableName="rozet">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rozetPK"/>
+            </column>
+            <column name="rozet_ismi" type="VARCHAR(500)"/>
+            <column name="rozet_resim" type="BLOB"/>
+            <column name="rozet_resim_content_type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-23">
+        <createTable tableName="site_info">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="site_infoPK"/>
+            </column>
+            <column name="baslik" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-24">
+        <createTable tableName="soru">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="soruPK"/>
+            </column>
+            <column name="cevap" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-25">
+        <createTable tableName="soru_kazanimlari">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="soru_kazanimlariPK"/>
+            </column>
+            <column name="kazanim" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-26">
+        <createTable tableName="soru_test">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="soru_testPK"/>
+            </column>
+            <column name="cevaplar" type="VARCHAR(255)"/>
+            <column name="soru_pdf_file" type="BLOB"/>
+            <column name="soru_pdf_file_content_type" type="VARCHAR(255)"/>
+            <column name="soru_sayisi" type="INT"/>
+            <column name="tes_baslik" type="VARCHAR(500)"/>
+            <column name="test_foto" type="BLOB"/>
+            <column name="test_foto_content_type" type="VARCHAR(255)"/>
+            <column name="test_pdf" type="VARCHAR(500)"/>
+            <column name="test_bolum_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-27">
+        <createTable tableName="tag">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="tagPK"/>
+            </column>
+            <column name="name" type="VARCHAR(500)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-28">
+        <createTable tableName="yorum">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="yorumPK"/>
+            </column>
+            <column name="date" type="date"/>
+            <column name="yazi" type="VARCHAR(10000)"/>
+            <column name="form_yorum_id" type="BIGINT"/>
+            <column name="user_yorum_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-29">
+        <addUniqueConstraint columnNames="ders_form_id" constraintName="UC_DERSDERS_FORM_ID_COL" tableName="ders"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-30">
+        <addUniqueConstraint columnNames="ders_mufredat_id" constraintName="UC_DERSDERS_MUFREDAT_ID_COL" tableName="ders"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-31">
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-32">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-33">
+        <addUniqueConstraint columnNames="student_user_id" constraintName="UC_OGRENCISTUDENT_USER_ID_COL" tableName="ogrenci"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-34">
+        <addUniqueConstraint columnNames="ogretmen_user_id" constraintName="UC_OGRETMENOGRETMEN_USER_ID_COL" tableName="ogretmen"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-35">
+        <addForeignKeyConstraint baseColumnNames="kazanimlar_id" baseTableName="rel_soru__kazanimlar" constraintName="FK12sw570t5n51gf97lmauon1a5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="soru_kazanimlari" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-36">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-37">
+        <addForeignKeyConstraint baseColumnNames="ogretmen_user_id" baseTableName="ogretmen" constraintName="FK4d1mdhy3m1ihxt1beegehg28a" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-38">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-39">
+        <addForeignKeyConstraint baseColumnNames="kayit_ogrenci_id" baseTableName="kayit" constraintName="FK5d5las9d906lgbhkhomnovtn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ogrenci" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-40">
+        <addForeignKeyConstraint baseColumnNames="test_bolum_id" baseTableName="soru_test" constraintName="FK5qrtowso8ftupwi843sc8dqam" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bolum" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-41">
+        <addForeignKeyConstraint baseColumnNames="ders_analizleri_id" baseTableName="rel_kayit__ders_analizleri" constraintName="FK787ribqaxqhiwd9bubk93pfg7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ders_analiz" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-42">
+        <addForeignKeyConstraint baseColumnNames="tag_id" baseTableName="rel_entry__tag" constraintName="FK8gvrhk21jjp4fk4lmr3rrgum4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="tag" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-43">
+        <addForeignKeyConstraint baseColumnNames="soru_test_id" baseTableName="rel_soru_test__sorular" constraintName="FK9g3ckgbk32su1idjlbhmi4qr7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="soru_test" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-44">
+        <addForeignKeyConstraint baseColumnNames="ders_form_id" baseTableName="ders" constraintName="FK9j5wd9to2xgbvuo27lx2vvdw7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="form" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-45">
+        <addForeignKeyConstraint baseColumnNames="mufredat_id" baseTableName="rel_mufredat__bolumler" constraintName="FKct3vhas8urvspjr6g7sqoi4bp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="mufredat" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-46">
+        <addForeignKeyConstraint baseColumnNames="rozetler_id" baseTableName="rel_ogrenci__rozetler" constraintName="FKg5skmqmn6ag732ltg2k0br4kp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="rozet" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-47">
+        <addForeignKeyConstraint baseColumnNames="student_user_id" baseTableName="ogrenci" constraintName="FKh51lvrrp97r7lpuy7t993qnx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-48">
+        <addForeignKeyConstraint baseColumnNames="soru_id" baseTableName="rel_soru__kazanimlar" constraintName="FKhmqxt5b8k1cyiv1lh2lykduhp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="soru" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-49">
+        <addForeignKeyConstraint baseColumnNames="user_yorum_id" baseTableName="yorum" constraintName="FKi2rwn7pf12xn0esx51v6gubvx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-50">
+        <addForeignKeyConstraint baseColumnNames="entry_id" baseTableName="rel_entry__tag" constraintName="FKibnd0kel42pg92kvriuh5wbc1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="entry" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-51">
+        <addForeignKeyConstraint baseColumnNames="kayit_id" baseTableName="rel_kayit__ders_analizleri" constraintName="FKisn2gh3hc5px43q6dhk0oev0w" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="kayit" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-52">
+        <addForeignKeyConstraint baseColumnNames="bolumler_id" baseTableName="rel_mufredat__bolumler" constraintName="FKj6px7cpy1g68jdgidtr6cdwk3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bolum" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-53">
+        <addForeignKeyConstraint baseColumnNames="ogrenci_id" baseTableName="rel_ogrenci__rozetler" constraintName="FKjc2w4ojkepucydlga0sxws4lr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ogrenci" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-54">
+        <addForeignKeyConstraint baseColumnNames="sorular_id" baseTableName="rel_soru_test__sorular" constraintName="FKjy48fnj52sj7anq0pwv2w14l8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="soru" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-55">
+        <addForeignKeyConstraint baseColumnNames="ait_old_bolum_id" baseTableName="ders_analiz" constraintName="FKm3bdbwbdbir91cpf6ylwjiaww" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bolum" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-56">
+        <addForeignKeyConstraint baseColumnNames="ders_ogretmeni_id" baseTableName="ders" constraintName="FKmr4n9y819ntlrln8hb679qo7u" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ogretmen" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-57">
+        <addForeignKeyConstraint baseColumnNames="ait_old_ders_id" baseTableName="kayit" constraintName="FKmwcnp77o8t8totck4munejk60" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ders" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-58">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="blog" constraintName="FKnk3eeyw0pr516jf11ux0hld7b" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-59">
+        <addForeignKeyConstraint baseColumnNames="blog_id" baseTableName="entry" constraintName="FKo476jgpf5v2s40yisjhpytdlf" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="blog" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-60">
+        <addForeignKeyConstraint baseColumnNames="form_yorum_id" baseTableName="yorum" constraintName="FKobsiqeolmjo2ha8uutn2q3mun" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="form" validate="true"/>
+    </changeSet>
+    <changeSet author="bedir (generated)" id="1648153405415-61">
+        <addForeignKeyConstraint baseColumnNames="ders_mufredat_id" baseTableName="ders" constraintName="FKruiabtcf27vg3r5g99581armt" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="mufredat" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -31,6 +31,10 @@ export class SoruTestUpdateComponent implements OnInit {
     testPdf: [null, [Validators.maxLength(500)]],
     testFoto: [],
     testFotoContentType: [],
+    cevaplar: [],
+    soruPdfFile: [],
+    soruPdfFileContentType: [],
+    soruSayisi: [],
     sorulars: [],
     testBolum: [],
   });
@@ -138,6 +142,10 @@ export class SoruTestUpdateComponent implements OnInit {
       testPdf: soruTest.testPdf,
       testFoto: soruTest.testFoto,
       testFotoContentType: soruTest.testFotoContentType,
+      cevaplar: soruTest.cevaplar,
+      soruPdfFile: soruTest.soruPdfFile,
+      soruPdfFileContentType: soruTest.soruPdfFileContentType,
+      soruSayisi: soruTest.soruSayisi,
       sorulars: soruTest.sorulars,
       testBolum: soruTest.testBolum,
     });
@@ -168,6 +176,10 @@ export class SoruTestUpdateComponent implements OnInit {
       testPdf: this.editForm.get(['testPdf'])!.value,
       testFotoContentType: this.editForm.get(['testFotoContentType'])!.value,
       testFoto: this.editForm.get(['testFoto'])!.value,
+      cevaplar: this.editForm.get(['cevaplar'])!.value,
+      soruPdfFileContentType: this.editForm.get(['soruPdfFileContentType'])!.value,
+      soruPdfFile: this.editForm.get(['soruPdfFile'])!.value,
+      soruSayisi: this.editForm.get(['soruSayisi'])!.value,
       sorulars: this.editForm.get(['sorulars'])!.value,
       testBolum: this.editForm.get(['testBolum'])!.value,
     };
