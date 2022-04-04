@@ -25,4 +25,6 @@ public interface SoruTestRepository extends JpaRepository<SoruTest, Long> {
 
     @Query("select soruTest from SoruTest soruTest left join fetch soruTest.sorulars where soruTest.id =:id")
     Optional<SoruTest> findOneWithEagerRelationships(@Param("id") Long id);
+
+    Optional<List<SoruTest>> findAllByTestBolum_BolumBaslik(String b);
 }

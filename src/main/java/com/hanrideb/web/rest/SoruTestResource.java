@@ -1,7 +1,11 @@
 package com.hanrideb.web.rest;
 
+import com.hanrideb.domain.Soru;
 import com.hanrideb.domain.SoruTest;
 import com.hanrideb.repository.SoruTestRepository;
+import com.hanrideb.service.SoruTestService;
+import com.hanrideb.service.dto.ResultsOfExam;
+import com.hanrideb.service.dto.TestAnswerDto;
 import com.hanrideb.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -10,12 +14,15 @@ import java.util.Objects;
 import java.util.Optional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import org.hibernate.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
@@ -35,9 +42,11 @@ public class SoruTestResource {
     private String applicationName;
 
     private final SoruTestRepository soruTestRepository;
+    private final SoruTestService soruTestService;
 
-    public SoruTestResource(SoruTestRepository soruTestRepository) {
+    public SoruTestResource(SoruTestRepository soruTestRepository, SoruTestService soruTestService) {
         this.soruTestRepository = soruTestRepository;
+        this.soruTestService = soruTestService;
     }
 
     /**
@@ -61,9 +70,25 @@ public class SoruTestResource {
     }
 
     /**
+     * testlerin analizini yapmak için geriye doğru yanlış sayisini gönderiyoru
+     * @param answerDto
+     * @return
+     * @throws URISyntaxException
+     */
+    @PostMapping("/soru-tests/analiz")
+    public ResponseEntity<ResultsOfExam> checkAnswers(@Valid @RequestBody TestAnswerDto answerDto) throws URISyntaxException {
+        if (answerDto.getTestId() == null) {
+            throw new BadRequestAlertException("kontrol edecek testin id değeri yok", ENTITY_NAME, "idexists");
+        }
+
+        ResultsOfExam resultsOfExam = soruTestService.testAnaliz(answerDto);
+        return ResponseEntity.ok(resultsOfExam);
+    }
+
+    /**
      * {@code PUT  /soru-tests/:id} : Updates an existing soruTest.
      *
-     * @param id the id of the soruTest to save.
+     * @param id       the id of the soruTest to save.
      * @param soruTest the soruTest to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated soruTest,
      * or with status {@code 400 (Bad Request)} if the soruTest is not valid,
@@ -97,7 +122,7 @@ public class SoruTestResource {
     /**
      * {@code PATCH  /soru-tests/:id} : Partial updates given fields of an existing soruTest, field will ignore if it is null
      *
-     * @param id the id of the soruTest to save.
+     * @param id       the id of the soruTest to save.
      * @param soruTest the soruTest to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated soruTest,
      * or with status {@code 400 (Bad Request)} if the soruTest is not valid,
@@ -183,6 +208,21 @@ public class SoruTestResource {
         log.debug("REST request to get SoruTest : {}", id);
         Optional<SoruTest> soruTest = soruTestRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(soruTest);
+    }
+
+    /**
+     * {@code GET  /soru-tests/:id} : get the "id" soruTest.
+     *
+     * @param id the id of the soruTest to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the soruTest, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/soru-tests/bolum/{bolum}")
+    public ResponseEntity<List<SoruTest>> getSoruTestByBolum(@PathVariable String bolum) {
+        Optional<List<SoruTest>> test = soruTestService.getByBolumName(bolum);
+        if (test.isPresent()) {
+            return ResponseEntity.ok(test.get());
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
