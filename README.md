@@ -5,6 +5,8 @@
 ders'e sıra koymak lazım
 teste zorluk seviyesi yada başlangıc orta gibi şeyler lazım
 
+bolum ve mufredat manyToMany bu yanlış olabilir manyToOne olacak galiba
+
 This application was generated using JHipster 7.5.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v7.5.0](https://www.jhipster.tech/documentation-archive/v7.5.0).
 
 ## Project Structure

@@ -1,9 +1,11 @@
 package com.hanrideb.service;
 
-import com.hanrideb.domain.SoruTest;
+import com.hanrideb.domain.*;
 import com.hanrideb.repository.SoruTestRepository;
+import com.hanrideb.repository.TestAnalizRepository;
 import com.hanrideb.service.dto.ResultsOfExam;
 import com.hanrideb.service.dto.TestAnswerDto;
+import com.hanrideb.service.exception.TestAlreadyUsedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,17 +17,44 @@ import org.springframework.stereotype.Service;
 public class SoruTestService {
 
     private final SoruTestRepository soruTestRepository;
+    private final KayitService kayitService;
+    private final TestAnalizRepository testAnalizRepository;
+    private final OgrenciService ogrenciService;
 
-    public SoruTestService(SoruTestRepository soruTestRepository) {
+    public SoruTestService(
+        SoruTestRepository soruTestRepository,
+        KayitService kayitService,
+        TestAnalizRepository testAnalizRepository,
+        OgrenciService ogrenciService
+    ) {
         this.soruTestRepository = soruTestRepository;
+        this.kayitService = kayitService;
+        this.testAnalizRepository = testAnalizRepository;
+        this.ogrenciService = ogrenciService;
     }
 
     public Optional<List<SoruTest>> getByBolumName(String bolum) {
         return soruTestRepository.findAllByTestBolum_BolumBaslik(bolum);
     }
 
-    public ResultsOfExam testAnaliz(TestAnswerDto dto) {
+    public DersAnaliz kayitlardanDersAnaliziBul(List<Kayit> kayits, SoruTest test) {
+        for (Kayit k : kayits) {
+            for (DersAnaliz d : k.getDersAnalizleris()) {
+                if (d.getAitOldBolum().getBolumBaslik().equals(test.getTestBolum().getBolumBaslik())) {
+                    return d;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    //todo bu fonkison çok iş yapıyor bunu parçalara ayırabiliriz
+    public ResultsOfExam testAnaliz(TestAnswerDto dto) throws Exception {
         ResultsOfExam result = new ResultsOfExam();
+        TestAnaliz testAnaliz = new TestAnaliz();
+
+        List<Kayit> kayits = kayitService.getUserKayit();
 
         SoruTest test = soruTestRepository.getById(dto.getTestId());
 
@@ -39,7 +68,29 @@ public class SoruTestService {
                 result.increaseOfWrong();
             }
         }
+
+        // testin sonuçlarını veri tabanına kayıt ediyoruz
+        testAnaliz.setTestId(dto.getTestId());
+        testAnaliz.setDogru(result.getCountOfCorrect());
+        testAnaliz.setYanlis(result.getCountOfWrong());
+        testAnaliz.setBos(result.getCountOfBlank());
+        testAnaliz.setNet(netHesapla(result.getCountOfCorrect(), result.getCountOfWrong()));
+        testAnaliz.setDersAnaliz(kayitlardanDersAnaliziBul(kayits, test));
+        testAnaliz.setTamamlandi(true);
+        if (!testAnalizRepository.existsByTestIdAndDersAnaliz_Id(dto.getTestId(), kayitlardanDersAnaliziBul(kayits, test).getId())) {
+            testAnaliz = testAnalizRepository.save(testAnaliz);
+        } else {
+            throw new TestAlreadyUsedException();
+        }
+
+        ogrenciService.OgrenciPuanArttir(testAnaliz.getNet());
+
         return result;
+    }
+
+    public float netHesapla(int d, int y) {
+        float yanlis = y;
+        return d - (yanlis / 3);
     }
 
     public List<String> cevapAnahtariOlustur(String cevaplar) {

@@ -1,6 +1,7 @@
 package com.hanrideb.repository;
 
 import com.hanrideb.domain.Bolum;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface BolumRepository extends JpaRepository<Bolum, Long> {}
+public interface BolumRepository extends JpaRepository<Bolum, Long> {
+    Optional<Bolum> findByBolumBaslik(String bolumName);
+}

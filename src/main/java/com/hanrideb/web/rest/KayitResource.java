@@ -178,6 +178,18 @@ public class KayitResource {
         }
     }
 
+    @GetMapping("/kayit/kayitlimi/{bolum}")
+    public ResponseEntity<Boolean> getOgrenciKayitliMi(@PathVariable String bolum) {
+        boolean kayitlimi = kayitService.dersKayitliMi(bolum);
+        return ResponseEntity.ok(kayitlimi);
+        //        log.debug("REST request to get all Kayits");
+        //        try {
+        //            return kayitService.getUserKayit();
+        //        } catch (Exception e) {
+        //            throw new BadRequestAlertException("Ogrenci bulunamadı", ENTITY_NAME, "idnull");
+        //        }
+    }
+
     /**
      * {@code GET  /kayits/:id} : get the "id" kayit.
      *

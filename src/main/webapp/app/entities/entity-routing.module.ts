@@ -94,6 +94,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'gamificationApp.imageModel.home.title' },
         loadChildren: () => import('./image-model/image-model.module').then(m => m.ImageModelModule),
       },
+      {
+        path: 'test-analiz',
+        data: { pageTitle: 'gamificationApp.testAnaliz.home.title' },
+        loadChildren: () => import('./test-analiz/test-analiz.module').then(m => m.TestAnalizModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

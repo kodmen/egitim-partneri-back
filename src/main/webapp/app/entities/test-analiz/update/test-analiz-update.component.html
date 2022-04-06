@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-test-analiz-heading"
+        data-cy="TestAnalizCreateUpdateHeading"
+        jhiTranslate="gamificationApp.testAnaliz.home.createOrEditLabel"
+      >
+        Create or edit a Test Analiz
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.testAnaliz.dogru" for="field_dogru">Dogru</label>
+          <input type="number" class="form-control" name="dogru" id="field_dogru" data-cy="dogru" formControlName="dogru" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.testAnaliz.yanlis" for="field_yanlis">Yanlis</label>
+          <input type="number" class="form-control" name="yanlis" id="field_yanlis" data-cy="yanlis" formControlName="yanlis" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.testAnaliz.bos" for="field_bos">Bos</label>
+          <input type="number" class="form-control" name="bos" id="field_bos" data-cy="bos" formControlName="bos" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.testAnaliz.net" for="field_net">Net</label>
+          <input type="number" class="form-control" name="net" id="field_net" data-cy="net" formControlName="net" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.testAnaliz.tamamlandi" for="field_tamamlandi">Tamamlandi</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="tamamlandi"
+            id="field_tamamlandi"
+            data-cy="tamamlandi"
+            formControlName="tamamlandi"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.testAnaliz.testId" for="field_testId">Test Id</label>
+          <input type="number" class="form-control" name="testId" id="field_testId" data-cy="testId" formControlName="testId" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gamificationApp.testAnaliz.dersAnaliz" for="field_dersAnaliz">Ders Analiz</label>
+          <select class="form-control" id="field_dersAnaliz" data-cy="dersAnaliz" name="dersAnaliz" formControlName="dersAnaliz">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                dersAnalizOption.id === editForm.get('dersAnaliz')!.value?.id ? editForm.get('dersAnaliz')!.value : dersAnalizOption
+              "
+              *ngFor="let dersAnalizOption of dersAnalizsSharedCollection; trackBy: trackDersAnalizById"
+            >
+              {{ dersAnalizOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

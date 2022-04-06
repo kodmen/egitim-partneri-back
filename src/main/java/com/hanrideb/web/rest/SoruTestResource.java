@@ -6,6 +6,7 @@ import com.hanrideb.repository.SoruTestRepository;
 import com.hanrideb.service.SoruTestService;
 import com.hanrideb.service.dto.ResultsOfExam;
 import com.hanrideb.service.dto.TestAnswerDto;
+import com.hanrideb.service.exception.TestAlreadyUsedException;
 import com.hanrideb.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -76,12 +77,19 @@ public class SoruTestResource {
      * @throws URISyntaxException
      */
     @PostMapping("/soru-tests/analiz")
-    public ResponseEntity<ResultsOfExam> checkAnswers(@Valid @RequestBody TestAnswerDto answerDto) throws URISyntaxException {
+    public ResponseEntity<ResultsOfExam> checkAnswers(@Valid @RequestBody TestAnswerDto answerDto) {
         if (answerDto.getTestId() == null) {
             throw new BadRequestAlertException("kontrol edecek testin id değeri yok", ENTITY_NAME, "idexists");
         }
 
-        ResultsOfExam resultsOfExam = soruTestService.testAnaliz(answerDto);
+        ResultsOfExam resultsOfExam = null;
+        try {
+            resultsOfExam = soruTestService.testAnaliz(answerDto);
+        } catch (TestAlreadyUsedException e) {
+            throw new BadRequestAlertException("bu test daha önce kaydedilmiş", ENTITY_NAME, "idexists");
+        } catch (Exception e) {
+            throw new BadRequestAlertException(e.getMessage(), ENTITY_NAME, "bilinmeyen hata");
+        }
         return ResponseEntity.ok(resultsOfExam);
     }
 

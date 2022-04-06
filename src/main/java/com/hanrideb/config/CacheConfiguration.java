@@ -84,6 +84,7 @@ public class CacheConfiguration {
             createCache(cm, com.hanrideb.domain.Tag.class.getName() + ".entries");
             createCache(cm, com.hanrideb.domain.SiteInfo.class.getName());
             createCache(cm, com.hanrideb.domain.ImageModel.class.getName());
+            createCache(cm, com.hanrideb.domain.TestAnaliz.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

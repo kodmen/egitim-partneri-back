@@ -1,0 +1,41 @@
+{
+  "fields": [
+    {
+      "fieldName": "dogru",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "yanlis",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "bos",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "net",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "tamamlandi",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "testId",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipName": "dersAnaliz",
+      "otherEntityName": "dersAnaliz",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    }
+  ],
+  "service": "no",
+  "readOnly": false,
+  "pagination": "no",
+  "name": "TestAnaliz",
+  "changelogDate": "20220404131910"
+}

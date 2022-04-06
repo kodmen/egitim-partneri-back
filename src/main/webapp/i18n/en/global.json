@@ -25,6 +25,7 @@
         "tag": "Tag",
         "siteInfo": "Site Info",
         "imageModel": "Image Model",
+        "testAnaliz": "Test Analiz",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

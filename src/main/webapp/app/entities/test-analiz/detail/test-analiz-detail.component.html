@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="testAnaliz">
+      <h2 data-cy="testAnalizDetailsHeading"><span jhiTranslate="gamificationApp.testAnaliz.detail.title">Test Analiz</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ testAnaliz.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.testAnaliz.dogru">Dogru</span></dt>
+        <dd>
+          <span>{{ testAnaliz.dogru }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.testAnaliz.yanlis">Yanlis</span></dt>
+        <dd>
+          <span>{{ testAnaliz.yanlis }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.testAnaliz.bos">Bos</span></dt>
+        <dd>
+          <span>{{ testAnaliz.bos }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.testAnaliz.net">Net</span></dt>
+        <dd>
+          <span>{{ testAnaliz.net }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.testAnaliz.tamamlandi">Tamamlandi</span></dt>
+        <dd>
+          <span>{{ testAnaliz.tamamlandi }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.testAnaliz.testId">Test Id</span></dt>
+        <dd>
+          <span>{{ testAnaliz.testId }}</span>
+        </dd>
+        <dt><span jhiTranslate="gamificationApp.testAnaliz.dersAnaliz">Ders Analiz</span></dt>
+        <dd>
+          <div *ngIf="testAnaliz.dersAnaliz">
+            <a [routerLink]="['/ders-analiz', testAnaliz.dersAnaliz?.id, 'view']">{{ testAnaliz.dersAnaliz?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/test-analiz', testAnaliz.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
