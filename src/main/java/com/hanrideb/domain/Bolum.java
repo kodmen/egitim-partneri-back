@@ -45,6 +45,9 @@ public class Bolum implements Serializable {
     @Column(name = "sure")
     private String sure;
 
+    @Column(name = "sira")
+    private Integer sira;
+
     @OneToMany(mappedBy = "aitOldBolum")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "aitOldBolum", "kayitlar3s" }, allowSetters = true)
@@ -138,6 +141,19 @@ public class Bolum implements Serializable {
 
     public void setSure(String sure) {
         this.sure = sure;
+    }
+
+    public Integer getSira() {
+        return this.sira;
+    }
+
+    public Bolum sira(Integer sira) {
+        this.setSira(sira);
+        return this;
+    }
+
+    public void setSira(Integer sira) {
+        this.sira = sira;
     }
 
     public Set<DersAnaliz> getAnalizBolums() {
@@ -262,6 +278,7 @@ public class Bolum implements Serializable {
             ", puan=" + getPuan() +
             ", videoLink='" + getVideoLink() + "'" +
             ", sure='" + getSure() + "'" +
+            ", sira=" + getSira() +
             "}";
     }
 }

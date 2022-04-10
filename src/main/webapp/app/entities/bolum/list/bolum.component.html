@@ -38,6 +38,7 @@
           <th scope="col"><span jhiTranslate="gamificationApp.bolum.puan">Puan</span></th>
           <th scope="col"><span jhiTranslate="gamificationApp.bolum.videoLink">Video Link</span></th>
           <th scope="col"><span jhiTranslate="gamificationApp.bolum.sure">Sure</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.bolum.sira">Sira</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -51,6 +52,7 @@
           <td>{{ bolum.puan }}</td>
           <td>{{ bolum.videoLink }}</td>
           <td>{{ bolum.sure }}</td>
+          <td>{{ bolum.sira }}</td>
           <td class="text-right">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/bolum', bolum.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">

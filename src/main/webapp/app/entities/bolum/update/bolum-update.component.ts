@@ -25,6 +25,7 @@ export class BolumUpdateComponent implements OnInit {
     puan: [],
     videoLink: [null, [Validators.maxLength(1000)]],
     sure: [],
+    sira: [],
   });
 
   constructor(
@@ -97,6 +98,7 @@ export class BolumUpdateComponent implements OnInit {
       puan: bolum.puan,
       videoLink: bolum.videoLink,
       sure: bolum.sure,
+      sira: bolum.sira,
     });
   }
 
@@ -109,6 +111,7 @@ export class BolumUpdateComponent implements OnInit {
       puan: this.editForm.get(['puan'])!.value,
       videoLink: this.editForm.get(['videoLink'])!.value,
       sure: this.editForm.get(['sure'])!.value,
+      sira: this.editForm.get(['sira'])!.value,
     };
   }
 }

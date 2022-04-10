@@ -9,6 +9,7 @@ export interface IBolum {
   puan?: number | null;
   videoLink?: string | null;
   sure?: string | null;
+  sira?: number | null;
   analizBolums?: IDersAnaliz[] | null;
   testlers?: ISoruTest[] | null;
   mufredatlars?: IMufredat[] | null;
@@ -22,6 +23,7 @@ export class Bolum implements IBolum {
     public puan?: number | null,
     public videoLink?: string | null,
     public sure?: string | null,
+    public sira?: number | null,
     public analizBolums?: IDersAnaliz[] | null,
     public testlers?: ISoruTest[] | null,
     public mufredatlars?: IMufredat[] | null

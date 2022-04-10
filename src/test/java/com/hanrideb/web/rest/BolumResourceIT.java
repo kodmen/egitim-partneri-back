@@ -45,6 +45,9 @@ class BolumResourceIT {
     private static final String DEFAULT_SURE = "AAAAAAAAAA";
     private static final String UPDATED_SURE = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_SIRA = 1;
+    private static final Integer UPDATED_SIRA = 2;
+
     private static final String ENTITY_API_URL = "/api/bolums";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -74,7 +77,8 @@ class BolumResourceIT {
             .dokuman(DEFAULT_DOKUMAN)
             .puan(DEFAULT_PUAN)
             .videoLink(DEFAULT_VIDEO_LINK)
-            .sure(DEFAULT_SURE);
+            .sure(DEFAULT_SURE)
+            .sira(DEFAULT_SIRA);
         return bolum;
     }
 
@@ -90,7 +94,8 @@ class BolumResourceIT {
             .dokuman(UPDATED_DOKUMAN)
             .puan(UPDATED_PUAN)
             .videoLink(UPDATED_VIDEO_LINK)
-            .sure(UPDATED_SURE);
+            .sure(UPDATED_SURE)
+            .sira(UPDATED_SIRA);
         return bolum;
     }
 
@@ -117,6 +122,7 @@ class BolumResourceIT {
         assertThat(testBolum.getPuan()).isEqualTo(DEFAULT_PUAN);
         assertThat(testBolum.getVideoLink()).isEqualTo(DEFAULT_VIDEO_LINK);
         assertThat(testBolum.getSure()).isEqualTo(DEFAULT_SURE);
+        assertThat(testBolum.getSira()).isEqualTo(DEFAULT_SIRA);
     }
 
     @Test
@@ -153,7 +159,8 @@ class BolumResourceIT {
             .andExpect(jsonPath("$.[*].dokuman").value(hasItem(DEFAULT_DOKUMAN.toString())))
             .andExpect(jsonPath("$.[*].puan").value(hasItem(DEFAULT_PUAN)))
             .andExpect(jsonPath("$.[*].videoLink").value(hasItem(DEFAULT_VIDEO_LINK)))
-            .andExpect(jsonPath("$.[*].sure").value(hasItem(DEFAULT_SURE)));
+            .andExpect(jsonPath("$.[*].sure").value(hasItem(DEFAULT_SURE)))
+            .andExpect(jsonPath("$.[*].sira").value(hasItem(DEFAULT_SIRA)));
     }
 
     @Test
@@ -172,7 +179,8 @@ class BolumResourceIT {
             .andExpect(jsonPath("$.dokuman").value(DEFAULT_DOKUMAN.toString()))
             .andExpect(jsonPath("$.puan").value(DEFAULT_PUAN))
             .andExpect(jsonPath("$.videoLink").value(DEFAULT_VIDEO_LINK))
-            .andExpect(jsonPath("$.sure").value(DEFAULT_SURE));
+            .andExpect(jsonPath("$.sure").value(DEFAULT_SURE))
+            .andExpect(jsonPath("$.sira").value(DEFAULT_SIRA));
     }
 
     @Test
@@ -199,7 +207,8 @@ class BolumResourceIT {
             .dokuman(UPDATED_DOKUMAN)
             .puan(UPDATED_PUAN)
             .videoLink(UPDATED_VIDEO_LINK)
-            .sure(UPDATED_SURE);
+            .sure(UPDATED_SURE)
+            .sira(UPDATED_SIRA);
 
         restBolumMockMvc
             .perform(
@@ -218,6 +227,7 @@ class BolumResourceIT {
         assertThat(testBolum.getPuan()).isEqualTo(UPDATED_PUAN);
         assertThat(testBolum.getVideoLink()).isEqualTo(UPDATED_VIDEO_LINK);
         assertThat(testBolum.getSure()).isEqualTo(UPDATED_SURE);
+        assertThat(testBolum.getSira()).isEqualTo(UPDATED_SIRA);
     }
 
     @Test
@@ -307,6 +317,7 @@ class BolumResourceIT {
         assertThat(testBolum.getPuan()).isEqualTo(UPDATED_PUAN);
         assertThat(testBolum.getVideoLink()).isEqualTo(UPDATED_VIDEO_LINK);
         assertThat(testBolum.getSure()).isEqualTo(DEFAULT_SURE);
+        assertThat(testBolum.getSira()).isEqualTo(DEFAULT_SIRA);
     }
 
     @Test
@@ -326,7 +337,8 @@ class BolumResourceIT {
             .dokuman(UPDATED_DOKUMAN)
             .puan(UPDATED_PUAN)
             .videoLink(UPDATED_VIDEO_LINK)
-            .sure(UPDATED_SURE);
+            .sure(UPDATED_SURE)
+            .sira(UPDATED_SIRA);
 
         restBolumMockMvc
             .perform(
@@ -345,6 +357,7 @@ class BolumResourceIT {
         assertThat(testBolum.getPuan()).isEqualTo(UPDATED_PUAN);
         assertThat(testBolum.getVideoLink()).isEqualTo(UPDATED_VIDEO_LINK);
         assertThat(testBolum.getSure()).isEqualTo(UPDATED_SURE);
+        assertThat(testBolum.getSira()).isEqualTo(UPDATED_SIRA);
     }
 
     @Test

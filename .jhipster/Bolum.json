@@ -25,6 +25,10 @@
     {
       "fieldName": "sure",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "sira",
+      "fieldType": "Integer"
     }
   ],
   "relationships": [

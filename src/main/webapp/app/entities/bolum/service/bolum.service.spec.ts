@@ -26,6 +26,7 @@ describe('Bolum Service', () => {
       puan: 0,
       videoLink: 'AAAAAAA',
       sure: 'AAAAAAA',
+      sira: 0,
     };
   });
 
@@ -66,6 +67,7 @@ describe('Bolum Service', () => {
           puan: 1,
           videoLink: 'BBBBBB',
           sure: 'BBBBBB',
+          sira: 1,
         },
         elemDefault
       );
@@ -84,6 +86,7 @@ describe('Bolum Service', () => {
         {
           videoLink: 'BBBBBB',
           sure: 'BBBBBB',
+          sira: 1,
         },
         new Bolum()
       );
@@ -108,6 +111,7 @@ describe('Bolum Service', () => {
           puan: 1,
           videoLink: 'BBBBBB',
           sure: 'BBBBBB',
+          sira: 1,
         },
         elemDefault
       );
@@ -159,7 +163,7 @@ describe('Bolum Service', () => {
       });
 
       it('should add only unique Bolum to an array', () => {
-        const bolumArray: IBolum[] = [{ id: 123 }, { id: 456 }, { id: 97528 }];
+        const bolumArray: IBolum[] = [{ id: 123 }, { id: 456 }, { id: 17106 }];
         const bolumCollection: IBolum[] = [{ id: 123 }];
         expectedResult = service.addBolumToCollectionIfMissing(bolumCollection, ...bolumArray);
         expect(expectedResult).toHaveLength(3);
