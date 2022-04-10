@@ -20,17 +20,20 @@ public class SoruTestService {
     private final KayitService kayitService;
     private final TestAnalizRepository testAnalizRepository;
     private final OgrenciService ogrenciService;
+    private final DersAnalizService dersAnalizService;
 
     public SoruTestService(
         SoruTestRepository soruTestRepository,
         KayitService kayitService,
         TestAnalizRepository testAnalizRepository,
-        OgrenciService ogrenciService
+        OgrenciService ogrenciService,
+        DersAnalizService dersAnalizService
     ) {
         this.soruTestRepository = soruTestRepository;
         this.kayitService = kayitService;
         this.testAnalizRepository = testAnalizRepository;
         this.ogrenciService = ogrenciService;
+        this.dersAnalizService = dersAnalizService;
     }
 
     public Optional<List<SoruTest>> getByBolumName(String bolum) {
@@ -83,6 +86,7 @@ public class SoruTestService {
             throw new TestAlreadyUsedException();
         }
 
+        dersAnalizService.dersAnalizVeriEkle(kayitlardanDersAnaliziBul(kayits, test), testAnaliz);
         ogrenciService.OgrenciPuanArttir(testAnaliz.getNet());
 
         return result;

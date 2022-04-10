@@ -42,6 +42,11 @@ public class LevelUtility {
     }
 
     public int levelGetir(int puan) {
+        // burası 0 olduğu zaman hata veriyor
+        //        if (puan < 1000 ){
+        //            return 1;
+        //        }
+
         return levelPuan.floorEntry(puan).getValue();
     }
     //    public static void main(String[] args) {

@@ -2,6 +2,7 @@ package com.hanrideb.service;
 
 import com.hanrideb.domain.DersAnaliz;
 import com.hanrideb.domain.Kayit;
+import com.hanrideb.domain.TestAnaliz;
 import com.hanrideb.repository.DersAnalizRepository;
 import java.util.List;
 import java.util.Optional;
@@ -18,16 +19,15 @@ public class DersAnalizService {
         this.kayitService = kayitService;
     }
 
-    public DersAnaliz getByBolumBaslik(String baslik) throws Exception {
-        //ait old bolume göre değil de
-        //kayitlara göre bulmam lazım
-        List<Kayit> kayits = kayitService.getUserKayit();
-        // usera ait kayitları getirdim
+    public DersAnaliz dersAnalizVeriEkle(DersAnaliz dersAnaliz, TestAnaliz testAnaliz) {
+        var toplamSoru = dersAnaliz.getCozulenSoru() + testAnaliz.getDogru() + testAnaliz.getYanlis() + testAnaliz.getBos();
+        var topmamDogru = dersAnaliz.getToplamDogru() + testAnaliz.getDogru();
+        var topmamYanlis = dersAnaliz.getToplamYanlis() + testAnaliz.getYanlis();
+        dersAnaliz.setTamamlandi(true);
+        dersAnaliz.setCozulenSoru(toplamSoru);
+        dersAnaliz.setToplamYanlis(topmamYanlis);
+        dersAnaliz.setToplamDogru(topmamDogru);
 
-        Optional<DersAnaliz> dersAnaliz = dersAnalizRepository.findByAitOldBolum_BolumBaslik(baslik);
-        if (dersAnaliz.isPresent()) {
-            return dersAnaliz.get();
-        }
-        throw new Exception("ders analiz bulunamadi");
+        return dersAnalizRepository.save(dersAnaliz);
     }
 }
