@@ -5,6 +5,7 @@ import com.hanrideb.repository.SoruTestRepository;
 import com.hanrideb.repository.TestAnalizRepository;
 import com.hanrideb.service.dto.ResultsOfExam;
 import com.hanrideb.service.dto.TestAnswerDto;
+import com.hanrideb.service.exception.NegativeNetException;
 import com.hanrideb.service.exception.TestAlreadyUsedException;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +81,11 @@ public class SoruTestService {
         testAnaliz.setNet(netHesapla(result.getCountOfCorrect(), result.getCountOfWrong()));
         testAnaliz.setDersAnaliz(kayitlardanDersAnaliziBul(kayits, test));
         testAnaliz.setTamamlandi(true);
+
+        if (testAnaliz.getNet() < 0) {
+            throw new NegativeNetException();
+        }
+
         if (!testAnalizRepository.existsByTestIdAndDersAnaliz_Id(dto.getTestId(), kayitlardanDersAnaliziBul(kayits, test).getId())) {
             testAnaliz = testAnalizRepository.save(testAnaliz);
         } else {

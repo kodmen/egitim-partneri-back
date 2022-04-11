@@ -6,6 +6,7 @@ import com.hanrideb.repository.SoruTestRepository;
 import com.hanrideb.service.SoruTestService;
 import com.hanrideb.service.dto.ResultsOfExam;
 import com.hanrideb.service.dto.TestAnswerDto;
+import com.hanrideb.service.exception.NegativeNetException;
 import com.hanrideb.service.exception.TestAlreadyUsedException;
 import com.hanrideb.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -85,6 +86,8 @@ public class SoruTestResource {
         ResultsOfExam resultsOfExam = null;
         try {
             resultsOfExam = soruTestService.testAnaliz(answerDto);
+        } catch (NegativeNetException e) {
+            throw new BadRequestAlertException("testin sonucu çok kötü eksi net gelmiştir", ENTITY_NAME, "eksi net");
         } catch (TestAlreadyUsedException e) {
             throw new BadRequestAlertException("bu test daha önce kaydedilmiş", ENTITY_NAME, "idexists");
         } catch (Exception e) {
