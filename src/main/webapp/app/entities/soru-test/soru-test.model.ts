@@ -11,6 +11,7 @@ export interface ISoruTest {
   soruPdfFileContentType?: string | null;
   soruPdfFile?: string | null;
   soruSayisi?: number | null;
+  seviye?: string | null;
   sorulars?: ISoru[] | null;
   testBolum?: IBolum | null;
 }
@@ -26,6 +27,7 @@ export class SoruTest implements ISoruTest {
     public soruPdfFileContentType?: string | null,
     public soruPdfFile?: string | null,
     public soruSayisi?: number | null,
+    public seviye?: string | null,
     public sorulars?: ISoru[] | null,
     public testBolum?: IBolum | null
   ) {}

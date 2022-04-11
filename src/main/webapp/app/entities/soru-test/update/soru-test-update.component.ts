@@ -35,6 +35,7 @@ export class SoruTestUpdateComponent implements OnInit {
     soruPdfFile: [],
     soruPdfFileContentType: [],
     soruSayisi: [],
+    seviye: [],
     sorulars: [],
     testBolum: [],
   });
@@ -146,6 +147,7 @@ export class SoruTestUpdateComponent implements OnInit {
       soruPdfFile: soruTest.soruPdfFile,
       soruPdfFileContentType: soruTest.soruPdfFileContentType,
       soruSayisi: soruTest.soruSayisi,
+      seviye: soruTest.seviye,
       sorulars: soruTest.sorulars,
       testBolum: soruTest.testBolum,
     });
@@ -180,6 +182,7 @@ export class SoruTestUpdateComponent implements OnInit {
       soruPdfFileContentType: this.editForm.get(['soruPdfFileContentType'])!.value,
       soruPdfFile: this.editForm.get(['soruPdfFile'])!.value,
       soruSayisi: this.editForm.get(['soruSayisi'])!.value,
+      seviye: this.editForm.get(['seviye'])!.value,
       sorulars: this.editForm.get(['sorulars'])!.value,
       testBolum: this.editForm.get(['testBolum'])!.value,
     };

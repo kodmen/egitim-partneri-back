@@ -53,6 +53,9 @@ public class SoruTest implements Serializable {
     @Column(name = "soru_sayisi")
     private Integer soruSayisi;
 
+    @Column(name = "seviye")
+    private String seviye;
+
     @ManyToMany
     @JoinTable(
         name = "rel_soru_test__sorular",
@@ -186,6 +189,19 @@ public class SoruTest implements Serializable {
         this.soruSayisi = soruSayisi;
     }
 
+    public String getSeviye() {
+        return this.seviye;
+    }
+
+    public SoruTest seviye(String seviye) {
+        this.setSeviye(seviye);
+        return this;
+    }
+
+    public void setSeviye(String seviye) {
+        this.seviye = seviye;
+    }
+
     public Set<Soru> getSorulars() {
         return this.sorulars;
     }
@@ -256,6 +272,7 @@ public class SoruTest implements Serializable {
             ", soruPdfFile='" + getSoruPdfFile() + "'" +
             ", soruPdfFileContentType='" + getSoruPdfFileContentType() + "'" +
             ", soruSayisi=" + getSoruSayisi() +
+            ", seviye='" + getSeviye() + "'" +
             "}";
     }
 }

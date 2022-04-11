@@ -39,6 +39,7 @@
           <th scope="col"><span jhiTranslate="gamificationApp.soruTest.cevaplar">Cevaplar</span></th>
           <th scope="col"><span jhiTranslate="gamificationApp.soruTest.soruPdfFile">Soru Pdf File</span></th>
           <th scope="col"><span jhiTranslate="gamificationApp.soruTest.soruSayisi">Soru Sayisi</span></th>
+          <th scope="col"><span jhiTranslate="gamificationApp.soruTest.seviye">Seviye</span></th>
           <th scope="col"><span jhiTranslate="gamificationApp.soruTest.sorular">Sorular</span></th>
           <th scope="col"><span jhiTranslate="gamificationApp.soruTest.testBolum">Test Bolum</span></th>
           <th scope="col"></th>
@@ -72,6 +73,7 @@
             <span *ngIf="soruTest.soruPdfFile">{{ soruTest.soruPdfFileContentType }}, {{ byteSize(soruTest.soruPdfFile) }}</span>
           </td>
           <td>{{ soruTest.soruSayisi }}</td>
+          <td>{{ soruTest.seviye }}</td>
           <td>
             <span *ngFor="let sorular of soruTest.sorulars; let last = last">
               <a class="form-control-static" [routerLink]="['/soru', sorular.id, 'view']">{{ sorular.id }}</a

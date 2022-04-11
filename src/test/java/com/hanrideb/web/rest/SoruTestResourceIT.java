@@ -60,6 +60,9 @@
 //    private static final Integer DEFAULT_SORU_SAYISI = 1;
 //    private static final Integer UPDATED_SORU_SAYISI = 2;
 //
+//    private static final String DEFAULT_SEVIYE = "AAAAAAAAAA";
+//    private static final String UPDATED_SEVIYE = "BBBBBBBBBB";
+//
 //    private static final String ENTITY_API_URL = "/api/soru-tests";
 //    private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 //
@@ -95,7 +98,8 @@
 //            .cevaplar(DEFAULT_CEVAPLAR)
 //            .soruPdfFile(DEFAULT_SORU_PDF_FILE)
 //            .soruPdfFileContentType(DEFAULT_SORU_PDF_FILE_CONTENT_TYPE)
-//            .soruSayisi(DEFAULT_SORU_SAYISI);
+//            .soruSayisi(DEFAULT_SORU_SAYISI)
+//            .seviye(DEFAULT_SEVIYE);
 //        return soruTest;
 //    }
 //
@@ -114,7 +118,8 @@
 //            .cevaplar(UPDATED_CEVAPLAR)
 //            .soruPdfFile(UPDATED_SORU_PDF_FILE)
 //            .soruPdfFileContentType(UPDATED_SORU_PDF_FILE_CONTENT_TYPE)
-//            .soruSayisi(UPDATED_SORU_SAYISI);
+//            .soruSayisi(UPDATED_SORU_SAYISI)
+//            .seviye(UPDATED_SEVIYE);
 //        return soruTest;
 //    }
 //
@@ -144,6 +149,7 @@
 //        assertThat(testSoruTest.getSoruPdfFile()).isEqualTo(DEFAULT_SORU_PDF_FILE);
 //        assertThat(testSoruTest.getSoruPdfFileContentType()).isEqualTo(DEFAULT_SORU_PDF_FILE_CONTENT_TYPE);
 //        assertThat(testSoruTest.getSoruSayisi()).isEqualTo(DEFAULT_SORU_SAYISI);
+//        assertThat(testSoruTest.getSeviye()).isEqualTo(DEFAULT_SEVIYE);
 //    }
 //
 //    @Test
@@ -183,7 +189,8 @@
 //            .andExpect(jsonPath("$.[*].cevaplar").value(hasItem(DEFAULT_CEVAPLAR)))
 //            .andExpect(jsonPath("$.[*].soruPdfFileContentType").value(hasItem(DEFAULT_SORU_PDF_FILE_CONTENT_TYPE)))
 //            .andExpect(jsonPath("$.[*].soruPdfFile").value(hasItem(Base64Utils.encodeToString(DEFAULT_SORU_PDF_FILE))))
-//            .andExpect(jsonPath("$.[*].soruSayisi").value(hasItem(DEFAULT_SORU_SAYISI)));
+//            .andExpect(jsonPath("$.[*].soruSayisi").value(hasItem(DEFAULT_SORU_SAYISI)))
+//            .andExpect(jsonPath("$.[*].seviye").value(hasItem(DEFAULT_SEVIYE)));
 //    }
 //
 //    @SuppressWarnings({ "unchecked" })
@@ -223,7 +230,8 @@
 //            .andExpect(jsonPath("$.cevaplar").value(DEFAULT_CEVAPLAR))
 //            .andExpect(jsonPath("$.soruPdfFileContentType").value(DEFAULT_SORU_PDF_FILE_CONTENT_TYPE))
 //            .andExpect(jsonPath("$.soruPdfFile").value(Base64Utils.encodeToString(DEFAULT_SORU_PDF_FILE)))
-//            .andExpect(jsonPath("$.soruSayisi").value(DEFAULT_SORU_SAYISI));
+//            .andExpect(jsonPath("$.soruSayisi").value(DEFAULT_SORU_SAYISI))
+//            .andExpect(jsonPath("$.seviye").value(DEFAULT_SEVIYE));
 //    }
 //
 //    @Test
@@ -253,7 +261,8 @@
 //            .cevaplar(UPDATED_CEVAPLAR)
 //            .soruPdfFile(UPDATED_SORU_PDF_FILE)
 //            .soruPdfFileContentType(UPDATED_SORU_PDF_FILE_CONTENT_TYPE)
-//            .soruSayisi(UPDATED_SORU_SAYISI);
+//            .soruSayisi(UPDATED_SORU_SAYISI)
+//            .seviye(UPDATED_SEVIYE);
 //
 //        restSoruTestMockMvc
 //            .perform(
@@ -275,6 +284,7 @@
 //        assertThat(testSoruTest.getSoruPdfFile()).isEqualTo(UPDATED_SORU_PDF_FILE);
 //        assertThat(testSoruTest.getSoruPdfFileContentType()).isEqualTo(UPDATED_SORU_PDF_FILE_CONTENT_TYPE);
 //        assertThat(testSoruTest.getSoruSayisi()).isEqualTo(UPDATED_SORU_SAYISI);
+//        assertThat(testSoruTest.getSeviye()).isEqualTo(UPDATED_SEVIYE);
 //    }
 //
 //    @Test
@@ -351,7 +361,8 @@
 //            .cevaplar(UPDATED_CEVAPLAR)
 //            .soruPdfFile(UPDATED_SORU_PDF_FILE)
 //            .soruPdfFileContentType(UPDATED_SORU_PDF_FILE_CONTENT_TYPE)
-//            .soruSayisi(UPDATED_SORU_SAYISI);
+//            .soruSayisi(UPDATED_SORU_SAYISI)
+//            .seviye(UPDATED_SEVIYE);
 //
 //        restSoruTestMockMvc
 //            .perform(
@@ -373,6 +384,7 @@
 //        assertThat(testSoruTest.getSoruPdfFile()).isEqualTo(UPDATED_SORU_PDF_FILE);
 //        assertThat(testSoruTest.getSoruPdfFileContentType()).isEqualTo(UPDATED_SORU_PDF_FILE_CONTENT_TYPE);
 //        assertThat(testSoruTest.getSoruSayisi()).isEqualTo(UPDATED_SORU_SAYISI);
+//        assertThat(testSoruTest.getSeviye()).isEqualTo(UPDATED_SEVIYE);
 //    }
 //
 //    @Test
@@ -395,7 +407,8 @@
 //            .cevaplar(UPDATED_CEVAPLAR)
 //            .soruPdfFile(UPDATED_SORU_PDF_FILE)
 //            .soruPdfFileContentType(UPDATED_SORU_PDF_FILE_CONTENT_TYPE)
-//            .soruSayisi(UPDATED_SORU_SAYISI);
+//            .soruSayisi(UPDATED_SORU_SAYISI)
+//            .seviye(UPDATED_SEVIYE);
 //
 //        restSoruTestMockMvc
 //            .perform(
@@ -417,6 +430,7 @@
 //        assertThat(testSoruTest.getSoruPdfFile()).isEqualTo(UPDATED_SORU_PDF_FILE);
 //        assertThat(testSoruTest.getSoruPdfFileContentType()).isEqualTo(UPDATED_SORU_PDF_FILE_CONTENT_TYPE);
 //        assertThat(testSoruTest.getSoruSayisi()).isEqualTo(UPDATED_SORU_SAYISI);
+//        assertThat(testSoruTest.getSeviye()).isEqualTo(UPDATED_SEVIYE);
 //    }
 //
 //    @Test

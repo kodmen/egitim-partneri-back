@@ -50,6 +50,10 @@
         <dd>
           <span>{{ soruTest.soruSayisi }}</span>
         </dd>
+        <dt><span jhiTranslate="gamificationApp.soruTest.seviye">Seviye</span></dt>
+        <dd>
+          <span>{{ soruTest.seviye }}</span>
+        </dd>
         <dt><span jhiTranslate="gamificationApp.soruTest.sorular">Sorular</span></dt>
         <dd>
           <span *ngFor="let sorular of soruTest.sorulars; let last = last">

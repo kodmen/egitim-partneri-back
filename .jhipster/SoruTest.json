@@ -30,6 +30,10 @@
     {
       "fieldName": "soruSayisi",
       "fieldType": "Integer"
+    },
+    {
+      "fieldName": "seviye",
+      "fieldType": "String"
     }
   ],
   "relationships": [

@@ -38,6 +38,9 @@
             <column name="soru_sayisi" type="integer">
                 <constraints nullable="true" />
             </column>
+            <column name="seviye" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="test_bolum_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -84,6 +87,7 @@
             <column name="soru_pdf_file" type="blob"/>
             <column name="soru_pdf_file_content_type" type="string"/>
             <column name="soru_sayisi" type="numeric"/>
+            <column name="seviye" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
