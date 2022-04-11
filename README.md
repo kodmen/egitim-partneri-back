@@ -2,17 +2,17 @@
 
 ./mvnw -Pdev,no-liquibase
 
-ders'e sıra koymak lazım
-teste zorluk seviyesi yada başlangıc orta gibi şeyler lazım
-
 bolum ve mufredat manyToMany bu yanlış olabilir manyToOne olacak galiba ?
 
 // yapılacaklar
+
+1. başarı sıralaması lazım
 
 1. bazı entitiler düzeltilicek
 
 - soru seviyesi eklenecek
 - bolumlerin sıralaması eklenecek
+
   2.test çözüldüğü zaman eğer eksi net çıkarsa tekrar çözülecek veri tabanına kayıt edilmeyecek
 
 This application was generated using JHipster 7.5.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v7.5.0](https://www.jhipster.tech/documentation-archive/v7.5.0).

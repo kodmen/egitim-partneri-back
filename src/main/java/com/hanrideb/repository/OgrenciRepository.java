@@ -27,4 +27,6 @@ public interface OgrenciRepository extends JpaRepository<Ogrenci, Long> {
     Optional<Ogrenci> findOneWithEagerRelationships(@Param("id") Long id);
 
     Optional<Ogrenci> findByStudentUser_Id(Long id);
+
+    List<Ogrenci> findTop10ByOrderByToplamPuanDesc();
 }

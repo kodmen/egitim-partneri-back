@@ -6,6 +6,7 @@ import com.hanrideb.domain.Ogrenci;
 import com.hanrideb.domain.User;
 import com.hanrideb.repository.OgrenciRepository;
 import com.hanrideb.service.utility.LevelUtility;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 
@@ -43,9 +44,7 @@ public class OgrenciService {
     }
 
     public void OgrenciPuanArttir(float net) throws Exception {
-        // veya her net için 10*
-        // 6.3 net yaparsa 63 puan kazanır
-        // tamam her net 10 puan
+        // her net 10 puan
         Ogrenci ogrenci = getByUserId();
         var kazanılanPuan = net * 10;
         var ogrPuan = ogrenci.getToplamPuan() + (int) kazanılanPuan;
@@ -59,5 +58,11 @@ public class OgrenciService {
         ogrenci.setToplamPuan(ogrPuan);
 
         ogrenciRepository.save(ogrenci);
+    }
+
+    public List<Ogrenci> ilkOnOgrListele() {
+        // burda ogr puanına göre listeleme yapılması gerekiyor
+
+        return ogrenciRepository.findTop10ByOrderByToplamPuanDesc();
     }
 }

@@ -173,6 +173,16 @@ public class OgrenciResource {
         }
     }
 
+    @GetMapping("/ogrenci/listele")
+    public List<Ogrenci> getTop10Ogrenci() throws Exception {
+        log.debug("REST request to get all Ogrencis");
+        try {
+            return ogrenciService.ilkOnOgrListele();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     /**
      * {@code GET  /ogrencis/:id} : get the "id" ogrenci.
      *
