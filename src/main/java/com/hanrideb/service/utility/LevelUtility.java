@@ -25,7 +25,7 @@ public class LevelUtility {
     }
 
     private void levelEkle() {
-        for (int i = 1; i < 100; i++) {
+        for (int i = 1; i < 101; i++) {
             level.put(i, (int) nextLevel(i));
             levelPuan.put((int) nextLevel(i), i);
         }
@@ -42,16 +42,11 @@ public class LevelUtility {
     }
 
     public int levelGetir(int puan) {
-        // burası 0 olduğu zaman hata veriyor
-        //        if (puan < 1000 ){
-        //            return 1;
-        //        }
-
         return levelPuan.floorEntry(puan).getValue();
     }
-    //    public static void main(String[] args) {
-    //        LeveUtility leveUtility = new LeveUtility();
-    //        leveUtility.levelYazdir();
-    //    }
 
+    public static void main(String[] args) {
+        LevelUtility leveUtility = new LevelUtility();
+        leveUtility.levelYazdir();
+    }
 }

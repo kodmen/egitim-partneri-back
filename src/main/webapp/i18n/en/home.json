@@ -1,7 +1,7 @@
 {
   "home": {
-    "title": "Welcome, Java Hipster!",
-    "subtitle": "This is your homepage",
+    "title": "Admin paneline hoşgeldiniz!",
+    "subtitle": "Burası anasayfa",
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },
