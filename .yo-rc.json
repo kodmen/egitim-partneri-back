@@ -64,6 +64,9 @@
     "creationTimestamp": 1646986721119,
     "jwtSecretKey": "ODhlMDVkMDAxZjNmNmI1Zjc0ZjE2YjNiODg3YTE1ZWMwODYxOTk5YTljOWE4NjI4NDNmYjU3ZjQwODRkM2FjMThmMDE0ZmE2N2IzYWY2Y2Q1NjJhOGQxNTBkYjcyY2RlYTQ5Y2Y2NTk3ZTQyMmM2NmRlYzY5ZGQ4MTg3NTJjMTQ=",
     "devServerPort": 4200,
-    "lastLiquibaseTimestamp": 1649078350000
+    "lastLiquibaseTimestamp": 1649078350000,
+    "herokuAppName": "egitim-partneri-back",
+    "herokuDeployType": "jar",
+    "herokuJavaVersion": "11"
   }
 }
