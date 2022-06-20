@@ -2,6 +2,8 @@
 
 ./mvnw -Pdev,no-liquibase
 
+heroku buildpacks:clear
+
 // yapılacaklar
 
 - prod.yml mail ve local değerler değiştirilecek
